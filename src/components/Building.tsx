@@ -48,7 +48,6 @@ export default function Building2(props: BuildingProps) {
               setLightboxEntry(idx);
             }}
             key={idx}
-            className={styles.buildingImage}
           />
         ))}
       </div>

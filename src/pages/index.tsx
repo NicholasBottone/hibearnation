@@ -55,7 +55,7 @@ const showerAsciiArt = `
  ,, . ,,      ||
  .* , . ,     ||
  ., .  *      ||
- .   , ..     ||
+ .   , ..    X||
  .* , ..      ||
  , . , **     ||
   * , .       ||
@@ -88,11 +88,24 @@ const lightbulbAsciiArt = `
   `;
 
 const bedAsciiArt = `
-  ___                ______     ___
-  | |_______________/______\\___| |
+  ___                  ______   ___
+  | |_________________/______\\_ | |
   | |                           | |
-  | |
+  | |___________________________| |
+  | |                           | |
   `;
+
+const chairAsciiArt = `
+    __________.
+   /_/-----/_/|   __
+   ( ( ' ' ( (| /'--'\\
+   (_( ' ' (_(|/.    .\\
+   / /=====/ /|  '||'
+  /_//____/_/ |   ||
+ (o|:.....|o) |   ||
+ |_|:_____|_|/'  _||_
+                /____\\
+`;
 const Home: NextPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
@@ -167,6 +180,12 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.LightbulbAsciiArt}>
             <pre>{lightbulbAsciiArt}</pre>
+          </div>
+          <div className={styles.BedAsciiArt}>
+            <pre>{bedAsciiArt}</pre>
+          </div>
+          <div className={styles.ChairAsciiArt}>
+            <pre>{chairAsciiArt}</pre>
           </div>
         </div>
       </main>
