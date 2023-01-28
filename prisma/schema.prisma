@@ -96,6 +96,7 @@ model User {
   Review    Review[]
   upvotes   Review[]  @relation("upvotes")
   downvotes Review[]  @relation("downvotes")
+  admin     Boolean   @default(false)
 }
 
 model VerificationToken {
