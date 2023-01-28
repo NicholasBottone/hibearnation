@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { type NextPage } from "next";
 import { api } from "../utils/api";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
-const Adminpanel: NextPage = () => {
-  const createAreasMutation = api.admin.createAreas.useMutation();
+const AdminPanel: NextPage = () => {
   const [areaName, setAreaName] = useState("");
+
+  const createAreasMutation = api.admin.createAreas.useMutation();
+  const { data: sessionData } = useSession();
 
   const addArea = () => {
     console.log("Adding area: ", areaName);
@@ -30,14 +32,18 @@ const Adminpanel: NextPage = () => {
           </h3>
         </div>
 
-        <button
-          onClick={() => {
-            console.log("Logging In...");
-            void signIn();
-          }}
-        >
-          Login
-        </button>
+        <button onClick={() => void signIn()}>Login</button>
+        <button onClick={() => void signOut()}>Logout</button>
+
+        {sessionData && (
+          <div>
+            <img
+              src={sessionData.user?.image || ""}
+              style={{ width: 50, height: 50 }}
+            />
+            <h3>Logged in as: {sessionData.user?.email}</h3>
+          </div>
+        )}
 
         <div
           className="add-area"
@@ -70,4 +76,4 @@ const Adminpanel: NextPage = () => {
   );
 };
 
-export default Adminpanel;
+export default AdminPanel;

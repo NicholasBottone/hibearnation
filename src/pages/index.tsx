@@ -115,7 +115,7 @@ const skateboardAsciiArt = `
 const Home: NextPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
-  // const { data } = api.locations.getAll.useQuery();
+  const { data } = api.locations.getAll.useQuery();
   return (
     <>
       <Head>
