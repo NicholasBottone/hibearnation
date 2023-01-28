@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           content="A Brown University dorm review and information site."
         />
         <meta name="theme-color" content="#4285f4" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon.png" />
       </Head>
 
       <main className={styles.main}>
