@@ -1,0 +1,44 @@
+.Review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  height: 70vh;
+  background-color: #885053;
+  border: 4px solid #fadc72;
+}
+
+.TopRow {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+}
+
+.TopRow > p {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  font-weight: 900;
+  color: #fadc72;
+  cursor: pointer;
+}
+
+.RatingRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.RatingPair {
+  color: #fadc72;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

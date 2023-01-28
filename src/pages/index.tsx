@@ -5,6 +5,8 @@ import { useState } from "react";
 import { api } from "../utils/api";
 import Searchbar from "../components/Searchbar";
 import ListOfDorms from "../components/ListOfDorms";
+import Modal from "../components/Modal";
+import Review from "../components/Review";
 
 const bearAsciiArt = `           (o\\---/o)  
             ( . . )                  .(  
@@ -15,6 +17,7 @@ const bearAsciiArt = `           (o\\---/o)
 `;
 
 const Home: NextPage = () => {
+  const [showModal, setShowModal] = useState(true);
   const [search, setSearch] = useState("");
 
   return (
@@ -30,6 +33,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <Modal show={showModal}>
+          <Review closeModal={() => setShowModal(false)} />
+        </Modal>
         <Searchbar search={search} setSearch={setSearch} />
         <div className={styles.container}>
           <ListOfDorms
