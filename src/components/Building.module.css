@@ -5,13 +5,26 @@
   color: black;
 }
 
-.buildingImage {
-  width: 100%;
+.buildingSlideshow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 4px solid #fadc72;
   height: 30vh;
+}
+
+.buildingImage {
+  /* // take up the whole space */
+  width: 100%;
   object-fit: cover;
   background-color: #fadc72;
   border: 4px solid black;
   border-radius: 10px;
+  background-color: #885053;
+}
+
+.buildingImage:hover {
+  cursor: zoom-in;
 }
 
 .buildingHeader {

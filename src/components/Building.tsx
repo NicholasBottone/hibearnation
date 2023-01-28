@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import styles from "./Building.module.css";
+
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
 interface BuildingProps {
   name: string;
@@ -12,20 +16,53 @@ interface BuildingProps {
     classYear: string[];
   };
   location: string;
+  images: string[];
 }
 
 export default function Building2(props: BuildingProps) {
   // State for reviews
   const [buildingReviews, setBuildingReviews] = useState([]);
 
+  // Lightbox
+  const [showLightbox, setShowLightbox] = useState(false);
+  const [lightboxEntry, setLightboxEntry] = useState(0);
+  const lightboxFrames = useMemo(
+    () => [
+      ...props.images.slice(lightboxEntry),
+      ...props.images.slice(0, lightboxEntry),
+    ],
+    [lightboxEntry]
+  );
+  const numImages = props.images.length > 3 ? 3 : props.images.length;
+
   return (
     <div className={styles.buildingContainer}>
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Grad_Center_C_building_at_Brown_University_%28cropped%29.jpg"
-        className={styles.buildingImage}
-        alt="Image for the building"
-      />
+      <div className={styles.buildingSlideshow}>
+        {props.images.slice(0, numImages).map((image, idx) => (
+          <img
+            src={image}
+            className={styles.buildingImage}
+            alt={`Frame ${idx + 1}`}
+            onClick={() => {
+              setShowLightbox(true);
+              setLightboxEntry(idx);
+            }}
+            key={idx}
+            className={styles.buildingImage}
+          />
+        ))}
+      </div>
       <h1 className={styles.buildingHeader}>{props.name}</h1>
+
+      <Lightbox
+        open={showLightbox}
+        close={() => setShowLightbox(false)}
+        slides={lightboxFrames.map((frame, index) => ({
+          src: frame,
+          alt: `Sketches Frame ${index + 1}`,
+        }))}
+        plugins={[Zoom]}
+      />
 
       {/* Content */}
       <div className={styles.buildingContentContainer}>

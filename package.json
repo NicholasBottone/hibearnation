@@ -23,6 +23,7 @@
     "react-dom": "18.2.0",
     "react-rating-stars-component": "^2.2.0",
     "superjson": "1.9.1",
+    "yet-another-react-lightbox": "^2.2.7",
     "zod": "^3.20.2"
   },
   "devDependencies": {
