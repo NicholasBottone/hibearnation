@@ -106,6 +106,12 @@ const chairAsciiArt = `
  |_|:_____|_|/'  _||_
                 /____\\
 `;
+
+const skateboardAsciiArt = `
+\\===============/
+  (o)       (o)
+  `;
+
 const Home: NextPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
@@ -186,6 +192,9 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.ChairAsciiArt}>
             <pre>{chairAsciiArt}</pre>
+          </div>
+          <div className={styles.SkateboardAsciiArt}>
+            <pre>{skateboardAsciiArt}</pre>
           </div>
         </div>
       </main>
