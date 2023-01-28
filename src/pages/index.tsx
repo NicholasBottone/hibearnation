@@ -17,7 +17,7 @@ const bearAsciiArt = `           (o\\---/o)
 `;
 
 const Home: NextPage = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
   // const { data } = api.locations.getAll.useQuery();
   return (
@@ -68,6 +68,7 @@ const Home: NextPage = () => {
                 fontSize: "2rem",
                 marginTop: "2rem",
               }}
+              onClick={() => setShowModal(true)}
             >
               hibearnation
             </b>
@@ -77,7 +78,11 @@ const Home: NextPage = () => {
             <p style={{ width: "80%" }}>
               <b>hibearnation</b> is a dorm information and review website for
               students at Brown University. Search for a dorm to see other
-              reviews, aggregated information, and more!
+              reviews, submit your own, browse aggregated information, and more!
+              <br />
+              <br />
+              Created for the <b>2023 Hack@Brown</b> competition by Nicholas
+              Vadasz, Oren Kohavi, Nicholas Bottone, and Andrew Li.
             </p>
           </div>
         </div>
