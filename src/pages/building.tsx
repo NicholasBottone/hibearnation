@@ -19,14 +19,7 @@ const MyPage: NextPage = () => {
         <meta name="theme-color" content="#4285f4" />
         <link rel="icon" href="/icon.png" />
       </Head>
-      {/* <img
-        src="/icon.png"
-        alt="logo"
-        style={{
-          height: "5rem",
-          marginLeft: "2rem",
-        }}
-      /> */}
+
       <Building
         name="Grad Center A"
         summary="Andrew lived here sophomore year"

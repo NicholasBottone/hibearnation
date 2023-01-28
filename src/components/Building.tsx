@@ -60,10 +60,12 @@ export default function Building2(props: BuildingProps) {
               setLightboxEntry(idx);
             }}
             key={idx}
+            style={{
+              width: `${100 / numImages}%`,
+            }}
           />
         ))}
       </div>
-      {/* <h1 className={styles.buildingHeader}>{props.name}</h1> */}
 
       <Lightbox
         open={showLightbox}

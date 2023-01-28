@@ -10,6 +10,7 @@
   flex-direction: row;
   gap: 2rem;
   align-items: center;
+  padding: 0.5rem 0;
 }
 
 .logo {
@@ -30,7 +31,6 @@
 }
 
 .buildingImage {
-  width: 100%;
   object-fit: cover;
   background-color: white;
   border: 2px solid black;
@@ -93,13 +93,12 @@
   font-weight: 700;
   font-style: bold;
   font-size: 24px;
-  padding-bottom: 10px;
   text-align: left;
 }
 
 .sectionDivider {
   width: 100%;
-  border-bottom: 1px solid #109a8e;
+  border-bottom: 1px solid #000000;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
