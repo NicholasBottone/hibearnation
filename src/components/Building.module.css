@@ -1,0 +1,100 @@
+.buildingContainer {
+  margin-top: 2rem;
+  padding: 0rem 2rem;
+  text-align: left;
+  color: #fadc72;
+}
+
+.buildingImage {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+  background-color: #885053;
+  border: 4px solid #fadc72;
+  border-radius: 10px;
+}
+
+.buildingHeader {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #fadc72;
+  text-align: left;
+  margin: 0;
+}
+
+.buildingContentContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gridColOne {
+  text-align: left;
+  display: grid;
+  grid-auto-rows: minmax(80px, auto);
+}
+
+.itemOne {
+  grid-row: 1;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+.itemTwo {
+  grid-row: 2;
+}
+
+.itemThree {
+  grid-row: 3/5;
+}
+
+.itemFour {
+  grid-row: 5;
+}
+
+.gridColTwo {
+  padding-left: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.scrollable {
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.sectionTitle {
+  font-weight: 700;
+  font-style: bold;
+  font-size: 24px;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.sectionDivider {
+  width: 100%;
+  border-bottom: 1px solid #109a8e;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Reviews */
+.reviewContainerEmptyState {
+  text-align: left;
+}
+
+/* Media queries */
+@media (max-width: 600px) {
+  .buildingHeader {
+    font-size: 2rem;
+  }
+  .buildingContentContainer {
+    grid-template-columns: 1fr;
+  }
+  .sectionTitle {
+    font-size: 18px;
+  }
+  .gridColTwo {
+    padding-left: 0;
+  }
+}
