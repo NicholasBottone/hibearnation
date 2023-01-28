@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { type NextPage } from "next";
+import Head from "next/head";
 
 import Building from "../components/Building";
-import Searchbar from "../components/Searchbar";
 
 // export default function building() {
 const MyPage: NextPage = () => {
@@ -10,7 +10,23 @@ const MyPage: NextPage = () => {
 
   return (
     <>
-      {/* <Searchbar search={search} setSearch={setSearch} /> */}
+      <Head>
+        <title>hibearnation</title>
+        <meta
+          name="description"
+          content="A Brown University dorm review and information site."
+        />
+        <meta name="theme-color" content="#4285f4" />
+        <link rel="icon" href="/icon.png" />
+      </Head>
+      {/* <img
+        src="/icon.png"
+        alt="logo"
+        style={{
+          height: "5rem",
+          marginLeft: "2rem",
+        }}
+      /> */}
       <Building
         name="Grad Center A"
         summary="Andrew lived here sophomore year"

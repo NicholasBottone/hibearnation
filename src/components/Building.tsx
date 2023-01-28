@@ -37,6 +37,18 @@ export default function Building2(props: BuildingProps) {
 
   return (
     <div className={styles.buildingContainer}>
+      <div className={styles.buildingHeader}>
+        <img
+          src="/icon.png"
+          alt="logo"
+          className={styles.logo}
+          onClick={() => {
+            window.location.href = "/";
+          }}
+        />
+        <h1 className={styles.buildingHeader}>{props.name}</h1>
+      </div>
+
       <div className={styles.buildingSlideshow}>
         {props.images.slice(0, numImages).map((image, idx) => (
           <img
@@ -51,7 +63,7 @@ export default function Building2(props: BuildingProps) {
           />
         ))}
       </div>
-      <h1 className={styles.buildingHeader}>{props.name}</h1>
+      {/* <h1 className={styles.buildingHeader}>{props.name}</h1> */}
 
       <Lightbox
         open={showLightbox}

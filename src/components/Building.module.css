@@ -1,8 +1,23 @@
 .buildingContainer {
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   padding: 0rem 2rem;
   text-align: left;
   color: black;
+}
+
+.buildingHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+
+.logo {
+  height: 5rem;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 .buildingSlideshow {
@@ -10,12 +25,15 @@
   flex-direction: row;
   justify-content: space-between;
   height: 40vh;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
 .buildingImage {
   width: 100%;
   object-fit: cover;
   background-color: white;
+  border: 2px solid black;
 }
 
 .buildingImage:hover {
