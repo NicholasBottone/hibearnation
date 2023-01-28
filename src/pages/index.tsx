@@ -1,15 +1,10 @@
 import styles from "./index.module.css";
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
-import Navbar from "../components/Navbar";
 
 import { api } from "../utils/api";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
   return (
     <>
       <Head>
@@ -18,7 +13,7 @@ const Home: NextPage = () => {
         <meta name="theme-color" content="#4285f4" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
+      {/* <Navbar /> */}
       <main className={styles.main}>hello there</main>
     </>
   );
