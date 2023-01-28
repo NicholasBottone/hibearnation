@@ -11,7 +11,7 @@ const About: NextPage = () => {
       <Searchbar search={search} setSearch={setSearch} />
       <div
         style={{
-          color: "#fadc72",
+          color: "white",
           margin: "2rem",
         }}
       >

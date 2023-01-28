@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Searchbar.module.css";
+import { BsFillHouseDoorFill } from "react-icons/bs";
 
 interface SearchbarProps {
   search: string;
@@ -9,12 +10,6 @@ interface SearchbarProps {
 export default function Searchbar(props: SearchbarProps) {
   return (
     <div className={styles.Searchbar}>
-      <img
-        src="icon.png"
-        alt="Logo"
-        className={styles.Logo}
-        onClick={() => (window.location.href = "/")}
-      />
       <input
         type="text"
         value={props.search}

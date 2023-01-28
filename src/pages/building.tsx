@@ -10,7 +10,7 @@ const MyPage: NextPage = () => {
 
   return (
     <>
-      <Searchbar search={search} setSearch={setSearch} />
+      {/* <Searchbar search={search} setSearch={setSearch} /> */}
       <Building
         name="Grad Center A"
         summary="Andrew lived here sophomore year"

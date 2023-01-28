@@ -16,6 +16,83 @@ const bearAsciiArt = `           (o\\---/o)
   |||         |||                '-'.'''-'     
 `;
 
+const houseAsciiArt = `
+    %
+     %
+  ___||_____
+ /         /\\
+/_________/  \\
+|    _    |  |
+|[] | | []|[]|
+|   | |   |  |
+`;
+
+const sciliAsciiArt = `
+____      ____
+|  |______|  |
+|  |======|  |
+|  |______|  |
+|  |______|  |
+|  |______|  |
+|  |______|  |
+|  |______|  |
+|  |______|  |
+|  |______|  |
+|  |______|  |
+|  |______|  |
+|  |      |  |
+|  |      |  |
+`;
+
+const showerAsciiArt = `
+
+    /=========||
+   ||         ||
+  /__\\        ||
+  , ..        ||
+ , . * ,      ||
+  * , .       ||
+ ,, . ,,      ||
+ .* , . ,     ||
+ ., .  *      ||
+ .   , ..     ||
+ .* , ..      ||
+ , . , **     ||
+  * , .       ||
+* ,, . ,,     ||
+  _____       ||
+`;
+
+const sofaAsciiArt = `
+ .-="""""""""""=-.
+ | . . . . . . . |
+ | .'.'.'.'.'.'. |
+()_______________()
+||_______________||
+ W               W
+`;
+
+const toiletAsciiArt = `
+     _
+    | |
+ ___| |
+(    .'
+ )  ( 
+  `;
+
+const lightbulbAsciiArt = `
+  :
+  '.  _  .'
+ -=  (~)  =-   
+  .'  #  '.
+  `;
+
+const bedAsciiArt = `
+  ___                ______     ___
+  | |_______________/______\\___| |
+  | |                           | |
+  | |
+  `;
 const Home: NextPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
@@ -36,6 +113,15 @@ const Home: NextPage = () => {
         <Modal show={showModal}>
           <Review closeModal={() => setShowModal(false)} />
         </Modal>
+        <p
+          className={styles.title}
+          style={{
+            fontSize: "2rem",
+            margin: 0,
+          }}
+        >
+          hi<b style={{ color: "#822b2e" }}>bear</b>nation
+        </p>
         <Searchbar search={search} setSearch={setSearch} />
         <div className={styles.container}>
           <ListOfDorms
@@ -61,29 +147,26 @@ const Home: NextPage = () => {
             ]}
             curSearch={search}
           />
-          <div className={styles.MiscBox}>
-            <b
-              style={{
-                fontFamily: "monospace",
-                fontSize: "2rem",
-                marginTop: "2rem",
-              }}
-              onClick={() => setShowModal(true)}
-            >
-              hibearnation
-            </b>
-            <div className={styles.BearAsciiArt}>
-              <pre onClick={() => alert("Ow! That hurt!")}>{bearAsciiArt}</pre>
-            </div>
-            <p style={{ width: "80%" }}>
-              <b>hibearnation</b> is a dorm information and review website for
-              students at Brown University. Search for a dorm to see other
-              reviews, submit your own, browse aggregated information, and more!
-              <br />
-              <br />
-              Created for the <b>2023 Hack@Brown</b> competition by Nicholas
-              Vadasz, Oren Kohavi, Nicholas Bottone, and Andrew Li.
-            </p>
+          <div className={styles.BearAsciiArt}>
+            <pre>{bearAsciiArt}</pre>
+          </div>
+          <div className={styles.HouseAsciiArt}>
+            <pre>{houseAsciiArt}</pre>
+          </div>
+          <div className={styles.SciliAsciiArt}>
+            <pre>{sciliAsciiArt}</pre>
+          </div>
+          <div className={styles.ShowerAsciiArt}>
+            <pre>{showerAsciiArt}</pre>
+          </div>
+          <div className={styles.SofaAsciiArt}>
+            <pre>{sofaAsciiArt}</pre>
+          </div>
+          <div className={styles.ToiletAsciiArt}>
+            <pre>{toiletAsciiArt}</pre>
+          </div>
+          <div className={styles.LightbulbAsciiArt}>
+            <pre>{lightbulbAsciiArt}</pre>
           </div>
         </div>
       </main>
