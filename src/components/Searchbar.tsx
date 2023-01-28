@@ -9,6 +9,12 @@ interface SearchbarProps {
 export default function Searchbar(props: SearchbarProps) {
   return (
     <div className={styles.Searchbar}>
+      <img
+        src="icon.png"
+        alt="Logo"
+        className={styles.Logo}
+        onClick={() => (window.location.href = "/")}
+      />
       <input
         type="text"
         value={props.search}

@@ -1,8 +1,17 @@
 .Searchbar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   margin-top: 2%;
+}
+
+.Logo {
+  padding-left: 2%;
+  height: 5rem;
+}
+
+.Logo:hover {
+  cursor: pointer;
 }
 
 .Search {
