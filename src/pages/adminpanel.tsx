@@ -33,7 +33,7 @@ const Adminpanel: NextPage = () => {
         <button
           onClick={() => {
             console.log("Logging In...");
-            signIn();
+            void signIn();
           }}
         >
           Login
@@ -62,6 +62,7 @@ const Adminpanel: NextPage = () => {
 
         <div className="add-location">
           <h2 style={{ textAlign: "center" }}>Add Location:</h2>
+          <label htmlFor="Location Name">Location Name:</label>
           <input id="Location Name" type="text" />
         </div>
       </div>
