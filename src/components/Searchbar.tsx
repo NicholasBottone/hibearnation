@@ -1,10 +1,21 @@
 import React from "react";
 import styles from "./Searchbar.module.css";
 
-export default function Searchbar() {
+interface SearchbarProps {
+  search: string;
+  setSearch: (search: string) => void;
+}
+
+export default function Searchbar(props: SearchbarProps) {
   return (
     <div className={styles.Searchbar}>
-      <input type="text" placeholder="Search..." className={styles.Search} />
+      <input
+        type="text"
+        value={props.search}
+        placeholder="Search..."
+        onChange={(e) => props.setSearch(e.target.value)}
+        className={styles.Search}
+      />
     </div>
   );
 }

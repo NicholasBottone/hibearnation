@@ -2,10 +2,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: #885053;
+  width: 50%;
+  margin-left: 2%;
+  height: 49rem;
   border: 4px solid #fadc72;
   border-radius: 10px;
+  overflow-y: scroll;
+}
+
+.Dorm {
+  background-color: #885053;
+  display: flex;
+  font-size: 1.5rem;
+  color: #fadc72;
+  width: 100%;
+  align-items: center;
+  /* justify-content: center; */
+  padding-top: 2%;
+  padding-left: 2%;
+  padding-bottom: 2%;
+  border-bottom: 4px solid #fadc72;
+  cursor: pointer;
+}
+
+.Dorm:hover {
+  background-color: #a55f63;
 }
