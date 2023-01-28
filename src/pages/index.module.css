@@ -1,12 +1,23 @@
 .main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   height: 100vh;
   width: 100vw;
   background-color: #885053;
   /* makes it so you cant scroll lmfao */
   /* position: fixed; */
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
+}
+
+.BearAsciiArt {
+  font-size: 1.2rem;
+  color: #fadc72;
+}
+
+.header {
+  font-family: monospace;
+  font-size: 1.3rem;
+  color: #fadc72;
 }

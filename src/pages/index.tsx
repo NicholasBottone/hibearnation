@@ -3,6 +3,16 @@ import { type NextPage } from "next";
 import Head from "next/head";
 
 import { api } from "../utils/api";
+import Searchbar from "../components/Searchbar";
+import ListOfDorms from "../components/ListOfDorms";
+
+const bearAsciiArt = `           (o\\---/o)  
+            ( . . )                  .(  
+   ________ ( (T) )                 /%/\\  
+ o|               /                (%(%))
+  |  ____________/                .-'..'-.
+  |||         |||                '-'.'''-'     
+`;
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +24,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <Navbar /> */}
-      <main className={styles.main}>hello there</main>
+
+      <main className={styles.main}>
+        <Searchbar />
+        <div className={styles.container}>
+          <ListOfDorms dorms={["Dorm 1", "Dorm 2", "Dorm 3"]} />
+        </div>
+      </main>
     </>
   );
 };
