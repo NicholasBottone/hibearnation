@@ -19,7 +19,7 @@ const bearAsciiArt = `           (o\\---/o)
 const Home: NextPage = () => {
   const [showModal, setShowModal] = useState(true);
   const [search, setSearch] = useState("");
-
+  // const { data } = api.locations.getAll.useQuery();
   return (
     <>
       <Head>

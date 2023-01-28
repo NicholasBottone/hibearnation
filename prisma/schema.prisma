@@ -34,28 +34,23 @@ model Location {
 }
 
 model Review {
-  id         String   @id @default(cuid())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  title      String
-  body       String   @db.Text
-  rating     Int
-  author     User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId   String
-  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
-  locationId String
-  Media      Media[]
-  upvotes    User[]   @relation("upvotes")
-  downvotes  User[]   @relation("downvotes")
-}
-
-model Media {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  caption   String
-  url       String
-  review    Review   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
-  reviewId  String
+  id                  String   @id @default(cuid())
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  title               String
+  body                String   @db.Text
+  author              User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId            String
+  location            Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  locationId          String
+  media               String[]
+  upvotes             User[]   @relation("upvotes")
+  downvotes           User[]   @relation("downvotes")
+  // ratings are on a scale from 1-10
+  overallRating       Int
+  amenitiesRating     Int
+  comfortRating       Int
+  locationRating      Int
 }
 
 // Necessary for Next auth
