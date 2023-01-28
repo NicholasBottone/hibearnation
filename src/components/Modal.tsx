@@ -18,6 +18,7 @@ export default function Modal(props: ModalProps) {
         display: props.show ? "flex" : "none",
         justifyContent: "center",
         alignItems: "center",
+        zIndex: "1000",
       }}
     >
       {props.children}

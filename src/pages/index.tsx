@@ -7,110 +7,18 @@ import Searchbar from "../components/Searchbar";
 import ListOfDorms from "../components/ListOfDorms";
 import Modal from "../components/Modal";
 import Review from "../components/Review";
-
-const bearAsciiArt = `           (o\\---/o)  
-            ( . . )                  .(  
-   ________ ( (T) )                 /%/\\  
- o|               /                (%(%))
-  |  ____________/                .-'..'-.
-  |||         |||                '-'.'''-'     
-`;
-
-const houseAsciiArt = `
-    %
-     %
-  ___||_____
- /         /\\
-/_________/  \\
-|    _    |  |
-|[] | | []|[]|
-|   | |   |  |
-`;
-
-const sciliAsciiArt = `
-____      ____
-|  |______|  |
-|  |======|  |
-|  |______|  |
-|  |______|  |
-|  |______|  |
-|  |______|  |
-|  |______|  |
-|  |______|  |
-|  |______|  |
-|  |______|  |
-|  |______|  |
-|  |      |  |
-|  |      |  |
-`;
-
-const showerAsciiArt = `
-
-    /=========||
-   ||         ||
-  /__\\        ||
-  , ..        ||
- , . * ,      ||
-  * , .       ||
- ,, . ,,      ||
- .* , . ,     ||
- ., .  *      ||
- .   , ..    X||
- .* , ..      ||
- , . , **     ||
-  * , .       ||
-* ,, . ,,     ||
-  _____       ||
-`;
-
-const sofaAsciiArt = `
- .-="""""""""""=-.
- | . . . . . . . |
- | .'.'.'.'.'.'. |
-()_______________()
-||_______________||
- W               W
-`;
-
-const toiletAsciiArt = `
-     _
-    | |
- ___| |
-(    .'
- )  ( 
-  `;
-
-const lightbulbAsciiArt = `
-  :
-  '.  _  .'
- -=  (~)  =-   
-  .'  #  '.
-  `;
-
-const bedAsciiArt = `
-  ___                  ______   ___
-  | |_________________/______\\_ | |
-  | |                           | |
-  | |___________________________| |
-  | |                           | |
-  `;
-
-const chairAsciiArt = `
-    __________.
-   /_/-----/_/|   __
-   ( ( ' ' ( (| /'--'\\
-   (_( ' ' (_(|/.    .\\
-   / /=====/ /|  '||'
-  /_//____/_/ |   ||
- (o|:.....|o) |   ||
- |_|:_____|_|/'  _||_
-                /____\\
-`;
-
-const skateboardAsciiArt = `
-\\===============/
-  (o)       (o)
-  `;
+import {
+  bearAsciiArt,
+  houseAsciiArt,
+  sciliAsciiArt,
+  showerAsciiArt,
+  sofaAsciiArt,
+  chairAsciiArt,
+  skateboardAsciiArt,
+  lightbulbAsciiArt,
+  toiletAsciiArt,
+  bedAsciiArt,
+} from "../components/ascii";
 
 const Home: NextPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -166,35 +74,24 @@ const Home: NextPage = () => {
             ]}
             curSearch={search}
           />
-          <div className={styles.BearAsciiArt}>
-            <pre>{bearAsciiArt}</pre>
-          </div>
-          <div className={styles.HouseAsciiArt}>
-            <pre>{houseAsciiArt}</pre>
-          </div>
-          <div className={styles.SciliAsciiArt}>
-            <pre>{sciliAsciiArt}</pre>
-          </div>
-          <div className={styles.ShowerAsciiArt}>
-            <pre>{showerAsciiArt}</pre>
-          </div>
-          <div className={styles.SofaAsciiArt}>
-            <pre>{sofaAsciiArt}</pre>
-          </div>
-          <div className={styles.ToiletAsciiArt}>
-            <pre>{toiletAsciiArt}</pre>
-          </div>
-          <div className={styles.LightbulbAsciiArt}>
-            <pre>{lightbulbAsciiArt}</pre>
-          </div>
-          <div className={styles.BedAsciiArt}>
-            <pre>{bedAsciiArt}</pre>
-          </div>
-          <div className={styles.ChairAsciiArt}>
-            <pre>{chairAsciiArt}</pre>
-          </div>
-          <div className={styles.SkateboardAsciiArt}>
-            <pre>{skateboardAsciiArt}</pre>
+          <div className={styles.ascii}>
+            <pre
+              className={styles.BearAsciiArt}
+              onClick={() => setShowModal(true)}
+            >
+              {bearAsciiArt}
+            </pre>
+            <pre className={styles.HouseAsciiArt}>{houseAsciiArt}</pre>
+            <pre className={styles.SciliAsciiArt}>{sciliAsciiArt}</pre>
+            <pre className={styles.ShowerAsciiArt}>{showerAsciiArt}</pre>
+            <pre className={styles.SofaAsciiArt}>{sofaAsciiArt}</pre>
+            <pre className={styles.ChairAsciiArt}>{chairAsciiArt}</pre>
+            <pre className={styles.SkateboardAsciiArt}>
+              {skateboardAsciiArt}
+            </pre>
+            <pre className={styles.LightbulbAsciiArt}>{lightbulbAsciiArt}</pre>
+            <pre className={styles.ToiletAsciiArt}>{toiletAsciiArt}</pre>
+            <pre className={styles.BedAsciiArt}>{bedAsciiArt}</pre>
           </div>
         </div>
       </main>

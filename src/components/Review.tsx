@@ -4,6 +4,7 @@ import styles from "./Review.module.css";
 // @ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { useState } from "react";
+import { CgCloseR } from "react-icons/cg";
 
 interface ReviewProps {
   closeModal: () => void;
@@ -35,7 +36,7 @@ export default function Review(props: ReviewProps) {
   return (
     <div className={styles.Review}>
       <div className={styles.TopRow} onClick={props.closeModal}>
-        <p>X</p>
+        <CgCloseR className={styles.Close} />
       </div>
       <h1
         style={{ marginTop: 0, color: "black", marginBottom: 0 }}

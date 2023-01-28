@@ -3,9 +3,11 @@
   align-items: center;
   width: 30vw;
   margin-top: 0.7%;
+  position: relative;
 }
 
 .Search {
+  position: relative;
   border: 2px solid black;
   color: black;
   padding: 1rem;
@@ -14,10 +16,30 @@
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .Searchbar {
+    width: 96vw;
+    margin-bottom: 0.7%;
+  }
 }
 
 .Search::placeholder {
-  color: black;
+  color: rgb(145, 145, 145);
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
+}
+
+.SearchIcon {
+  position: absolute;
+  right: 0;
+  top: 27%;
+  color: black;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  z-index: 999;
+  cursor: pointer;
 }

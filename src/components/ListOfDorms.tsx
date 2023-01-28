@@ -11,12 +11,18 @@ export default function ListOfDorms(props: ListOfDormsProps) {
     <div className={styles.ListOfDorms}>
       {props.dorms.map(
         (dorm) =>
-          // only display dorms that contain the search string
           dorm.toLowerCase().includes(props.curSearch.toLowerCase()) && (
             <div className={styles.Dorm} key={dorm}>
               {dorm}
             </div>
           )
+      )}
+      {props.dorms.every(
+        (dorm) => !dorm.toLowerCase().includes(props.curSearch.toLowerCase())
+      ) && (
+        <div key="No dorms found" style={{ marginTop: "5%", color: "grey" }}>
+          No dorms found
+        </div>
       )}
     </div>
   );
