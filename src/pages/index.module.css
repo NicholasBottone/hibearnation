@@ -3,19 +3,19 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-color: #885053;
+  background-color: #fadc72;
 }
 
 .BearAsciiArt {
   font-family: "Poppins", sans-serif !important;
   font-size: rem;
-  color: #fadc72;
+  color: black;
 }
 
 .header {
   font-family: monospace;
   font-size: 1.3rem;
-  color: #fadc72;
+  color: black;
 }
 
 .container {
@@ -37,10 +37,10 @@
     margin-right: 2%;
     margin-left: 2%;
     height: 49rem;
-    background-color: #885053;
-    border: 4px solid #fadc72;
+    background-color: #fadc72;
+    border: 4px solid black;
     gap: 2%;
-    color: #fadc72;
+    color: black;
     border-radius: 10px;
     overflow-y: scroll;
   }

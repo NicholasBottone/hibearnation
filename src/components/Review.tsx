@@ -3,18 +3,44 @@ import styles from "./Review.module.css";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ReactStars from "react-rating-stars-component";
+import { useState } from "react";
 
 interface ReviewProps {
   closeModal: () => void;
 }
 
 export default function Review(props: ReviewProps) {
+  const [overallRating, setOverallRating] = useState(0);
+  const [amenitiesRating, setAmenitiesRating] = useState(0);
+  const [locationRating, setLocationRating] = useState(0);
+  const [comfortRating, setComfortRating] = useState(0);
+  const [review, setReview] = useState("");
+
+  const overallRate = (newRating: number) => {
+    setOverallRating(newRating);
+  };
+
+  const amenitiesRate = (newRating: number) => {
+    setAmenitiesRating(newRating);
+  };
+
+  const locationRate = (newRating: number) => {
+    setLocationRating(newRating);
+  };
+
+  const comfortRate = (newRating: number) => {
+    setComfortRating(newRating);
+  };
+
   return (
     <div className={styles.Review}>
       <div className={styles.TopRow} onClick={props.closeModal}>
         <p>X</p>
       </div>
-      <h1 style={{ marginTop: 0, color: "#fadc72", marginBottom: 0 }}>
+      <h1
+        style={{ marginTop: 0, color: "black", marginBottom: 0 }}
+        className={styles.Overall}
+      >
         Overall Score
       </h1>
       <ReactStars
@@ -24,7 +50,7 @@ export default function Review(props: ReviewProps) {
         emptyIcon={<i className="far fa-star"></i>}
         halfIcon={<i className="fa fa-star-half-alt"></i>}
         fullIcon={<i className="fa fa-star"></i>}
-        // color="black"
+        onChange={overallRate}
         activeColor="#ffd700"
       />
       <div className={styles.RatingRow}>
@@ -37,7 +63,7 @@ export default function Review(props: ReviewProps) {
             emptyIcon={<i className="far fa-star"></i>}
             halfIcon={<i className="fa fa-star-half-alt"></i>}
             fullIcon={<i className="fa fa-star"></i>}
-            // color="black"
+            onChange={amenitiesRate}
             activeColor="#ffd700"
           />
         </div>
@@ -50,7 +76,7 @@ export default function Review(props: ReviewProps) {
             emptyIcon={<i className="far fa-star"></i>}
             halfIcon={<i className="fa fa-star-half-alt"></i>}
             fullIcon={<i className="fa fa-star"></i>}
-            // color="black"
+            onChange={locationRate}
             activeColor="#ffd700"
           />
         </div>
@@ -63,11 +89,34 @@ export default function Review(props: ReviewProps) {
             emptyIcon={<i className="far fa-star"></i>}
             halfIcon={<i className="fa fa-star-half-alt"></i>}
             fullIcon={<i className="fa fa-star"></i>}
-            // color="black"
+            onChange={comfortRate}
             activeColor="#ffd700"
           />
         </div>
       </div>
+      <div className={styles.Input}>
+        {/* input field */}
+        <textarea
+          placeholder="Write a review..."
+          className={styles.Textarea}
+          onChange={(e) => setReview(e.target.value)}
+        />
+      </div>
+      <button
+        className={styles.Button}
+        onClick={() => {
+          console.log(
+            overallRating,
+            amenitiesRating,
+            locationRating,
+            comfortRating,
+            review
+          );
+          props.closeModal();
+        }}
+      >
+        Submit
+      </button>
     </div>
   );
 }
