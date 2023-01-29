@@ -157,6 +157,12 @@
   right: 2rem;
 }
 
+.SignIn:hover {
+  background-color: #860b0b;
+  color: white;
+  cursor: pointer;
+}
+
 .ProfilePicture {
   border-radius: 10px;
   color: white;
