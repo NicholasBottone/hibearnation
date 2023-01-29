@@ -38,8 +38,18 @@
   font-size: 1.5rem;
 }
 
+.UpvoteFilled {
+  font-size: 1.5rem;
+  color: #d24e4e;
+}
+
 .Downvote {
   font-size: 1.5rem;
+}
+
+.DownvoteFilled {
+  font-size: 1.5rem;
+  color: #4e50d2;
 }
 
 .Upvote:hover {
