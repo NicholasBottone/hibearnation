@@ -13,27 +13,68 @@ const AdminPanel: NextPage = () => {
   const [locationSummary, setLocationSummary] = useState("");
   const [locationSubs, setLocationSubs] = useState<string[]>([]);
   const [locationFloorplans, setLocationFloorplans] = useState<string[]>([]);
-  const location_setters = [
-    setLocationName,
-    setLocationAddress,
-    setLocationCoordinates,
-    setLocationAreaname,
-    setLocationSummary,
-  ];
+  const location_reset = () => {
+    setLocationName("");
+    setLocationAddress("");
+    setLocationCoordinates("");
+    setLocationAreaname("");
+    setLocationSummary("");
+    setLocationSubs([]);
+    setLocationFloorplans([]);
+  };
+
+  const [reviewTitle, setReviewTitle] = useState("");
+  const [reviewBody, setReviewBody] = useState("");
+  const [reviewLocationId, setReviewLocationId] = useState("");
+  const [reviewMedia, setReviewMedia] = useState<string[]>([]);
+  const [reviewOverallRating, setReviewOverallRating] = useState(5);
+  const [reviewAmenitiesRating, setReviewAmenitiesRating] = useState(5);
+  const [reviewComfortRating, setReviewComfortRating] = useState(5);
+  const [reviewLocationRating, setReviewLocationRating] = useState(5);
+  const review_reset = () => {
+    setReviewTitle("");
+    setReviewBody("");
+    setReviewLocationId("");
+    setReviewMedia([]);
+    setReviewOverallRating(5);
+    setReviewAmenitiesRating(5);
+    setReviewComfortRating(5);
+    setReviewLocationRating(5);
+  };
 
   const createAreaMutation = api.admin.createAreas.useMutation();
   const createLocationMutation = api.admin.createLocation.useMutation();
+  const createReviewMutation = api.reviews.createReview.useMutation();
+
+  const { data } = api.locatons.getAllAreas.useQuery();
 
   const { data: sessionData } = useSession();
 
   const addArea = () => {
     console.log("Adding area: ", areaName);
+    if (areaName === "") {
+      console.log("Area name is empty. Not adding area.");
+      alert("Area name is empty. Not adding area.");
+      return;
+    }
     //alert("Adding area: " + areaName);
     createAreaMutation.mutate({ name: areaName });
   };
 
   const addLocation = () => {
     console.log("Adding location: ", locationName + "...");
+    if (
+      locationName === "" ||
+      locationAddress === "" ||
+      locationCoordinates === "" ||
+      locationAreaname === "" ||
+      locationSummary === "" ||
+      locationFloorplans.length === 0
+    ) {
+      console.log("Location is missing nesecary fields. Not adding location.");
+      alert("Location is missing nesecary fields. Not adding location.");
+      return;
+    }
     console.log(
       "Address: ",
       locationAddress,
@@ -54,6 +95,25 @@ const AdminPanel: NextPage = () => {
       areaName: locationAreaname,
       sublocations: locationSubs,
       floorplans: locationFloorplans,
+    });
+  };
+
+  const addReview = () => {
+    console.log("Adding review...");
+    if (reviewTitle === "" || reviewBody === "" || reviewLocationId === "") {
+      console.log("nesecary fields are empty. Not adding review.");
+      alert("nesecary fields are empty. Not adding review.");
+      return;
+    }
+    createReviewMutation.mutate({
+      title: reviewTitle,
+      body: reviewBody,
+      locationId: reviewLocationId,
+      media: reviewMedia,
+      overallRating: reviewOverallRating,
+      amenitiesRating: reviewAmenitiesRating,
+      comfortRating: reviewComfortRating,
+      locationRating: reviewLocationRating,
     });
   };
 
@@ -129,15 +189,7 @@ const AdminPanel: NextPage = () => {
         >
           <h2 style={{ textAlign: "center" }}>Add Location:</h2>
 
-          <button
-            onClick={() => {
-              location_setters.forEach((setter) => setter(""));
-              setLocationSubs([]);
-              setLocationFloorplans([]);
-            }}
-          >
-            Clear Fields
-          </button>
+          <button onClick={location_reset}>Clear Fields</button>
 
           <label htmlFor="Location Name">Location Name:</label>
           <input
@@ -148,33 +200,34 @@ const AdminPanel: NextPage = () => {
           />
 
           <label htmlFor="Location Address">Location Address:</label>
-          <input
+          <textarea
             id="Location Address"
-            type="text"
             value={locationAddress}
             onChange={(e) => setLocationAddress(e.target.value)}
           />
 
           <label htmlFor="Location Coordinates">Location Coordinates:</label>
-          <input
+          <textarea
             id="Location Coordinates"
-            type="text"
             value={locationCoordinates}
             onChange={(e) => setLocationCoordinates(e.target.value)}
           />
 
+          {/* TODO Make this a dropdown */}
           <label htmlFor="Location Area Name">Location Area Name:</label>
-          <input
-            id="Location Area Name"
-            type="text"
-            value={locationAreaname}
-            onChange={(e) => setLocationAreaname(e.target.value)}
-          />
+          <div className="area-name-dropdown">
+            <input
+              id="Location Area Name"
+              type="text"
+              value={locationAreaname}
+              onChange={(e) => setLocationAreaname(e.target.value)}
+            />
+          </div>
 
           <label htmlFor="Location Sublocations (Empty or comma-separated list)">
             Location Sublocations:
           </label>
-          <input
+          <textarea
             id="Location Sublocations"
             type="text"
             value={locationSubs}
@@ -198,7 +251,7 @@ const AdminPanel: NextPage = () => {
           />
 
           <label htmlFor="Location Floorplans">Location Floorplans:</label>
-          <input
+          <textarea
             id="Location Floorplans"
             type="text"
             value={locationFloorplans}
@@ -222,7 +275,7 @@ const AdminPanel: NextPage = () => {
           />
 
           <label htmlFor="Location Summary">Location Summary:</label>
-          <input
+          <textarea
             id="Location Summary"
             type="text"
             value={locationSummary}
@@ -231,6 +284,115 @@ const AdminPanel: NextPage = () => {
 
           <button onClick={addLocation}>Add Location</button>
           <p>{createLocationMutation.data}</p>
+        </div>
+
+        <div
+          className="add-review"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h2 style={{ textAlign: "center" }}>Add Review:</h2>
+
+          <button onClick={review_reset}>Clear Fields</button>
+
+          <label htmlFor="Review Title">Review Title:</label>
+          <textarea
+            id="Review Title"
+            value={reviewTitle}
+            onChange={(e) => setReviewTitle(e.target.value)}
+          />
+
+          <label htmlFor="Review Body">Review Body:</label>
+          <textarea
+            id="Review Body"
+            value={reviewBody}
+            onChange={(e) => setReviewBody(e.target.value)}
+          />
+
+          <label htmlFor="Review Location ID">Review Location ID:</label>
+          <input
+            id="Review Location ID"
+            type="text"
+            value={reviewLocationId}
+            onChange={(e) => setReviewLocationId(e.target.value)}
+          />
+
+          <label htmlFor="Review Media (Empty or comma-separated list)">
+            Review Media:
+          </label>
+          <input
+            id="Review Media"
+            type="text"
+            value={reviewMedia}
+            onChange={(e) => {
+              const originalString = e.target.value;
+              //Separate the string by commas
+              const media = originalString.split(",");
+              //Remove any empty strings
+              const filteredMedia = media.filter(
+                (mediaItem) => mediaItem !== ""
+              );
+              //if there are no locations, set to empty array
+              if (!originalString) {
+                setReviewMedia([]);
+              }
+              //otherwise, set to the filtered array
+              else {
+                setReviewMedia(filteredMedia);
+              }
+            }}
+          />
+
+          <label htmlFor="Review Overall Rating">Review Overall Rating:</label>
+          <input
+            id="Review Overall Rating"
+            type="number"
+            value={reviewOverallRating}
+            onChange={(e) => setReviewOverallRating(Number(e.target.value))}
+            max={10}
+            min={1}
+          />
+
+          <label htmlFor="Review Amenities Rating">
+            Review Amenities Rating:
+          </label>
+          <input
+            id="Review Amenities Rating"
+            type="number"
+            value={reviewAmenitiesRating}
+            onChange={(e) => setReviewAmenitiesRating(Number(e.target.value))}
+            max={10}
+            min={1}
+          />
+
+          <label htmlFor="Review Comfort Rating">Review Comfort Rating:</label>
+          <input
+            id="Review Comfort Rating"
+            type="number"
+            value={reviewComfortRating}
+            onChange={(e) => setReviewComfortRating(Number(e.target.value))}
+            max={10}
+            min={1}
+          />
+
+          <label htmlFor="Review Location Rating">
+            Review Location Rating:
+          </label>
+          <input
+            id="Review Location Rating"
+            type="number"
+            value={reviewLocationRating}
+            onChange={(e) => setReviewLocationRating(Number(e.target.value))}
+            max={10}
+            min={1}
+          />
+
+          <button onClick={addReview}>Add Review</button>
+          <p>{createReviewMutation.data}</p>
         </div>
       </div>
     </>

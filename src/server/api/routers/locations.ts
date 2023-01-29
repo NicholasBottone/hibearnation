@@ -27,4 +27,8 @@ export const locationsRouter = createTRPCRouter({
         },
       });
     }),
+
+  getAllAreas: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.area.findMany();
+  }),
 });
