@@ -103,6 +103,7 @@ export default function Dorm(props: DormProps) {
     return os;
   };
   const os = getOS();
+  const mobileOS = os === "Android" || os === "iOS";
 
   // Overall dorm rating
   const [overallRating, setOverallRating] = useState(0);
@@ -334,8 +335,10 @@ export default function Dorm(props: DormProps) {
                 : styles.scrollable
             }
             style={{
-              height: props.reviews.length <= 3 ? "fit-content" : "50vh",
-              minHeight: props.reviews.length <= 3 ? "0px" : "400px",
+              height:
+                props.reviews.length <= 3 || mobileOS ? "fit-content" : "50vh",
+              minHeight:
+                props.reviews.length <= 3 || mobileOS ? "0px" : "400px",
             }}
           >
             {
