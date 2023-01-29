@@ -13,8 +13,15 @@ const AdminPanel: NextPage = () => {
   const [locationSummary, setLocationSummary] = useState("");
   const [locationSubs, setLocationSubs] = useState<string[]>([]);
   const [locationFloorplans, setLocationFloorplans] = useState<string[]>([]);
+  const location_setters = [
+    setLocationName,
+    setLocationAddress,
+    setLocationCoordinates,
+    setLocationAreaname,
+    setLocationSummary,
+  ];
 
-  const createAreasMutation = api.admin.createAreas.useMutation();
+  const createAreaMutation = api.admin.createAreas.useMutation();
   const createLocationMutation = api.admin.createLocation.useMutation();
 
   const { data: sessionData } = useSession();
@@ -22,7 +29,7 @@ const AdminPanel: NextPage = () => {
   const addArea = () => {
     console.log("Adding area: ", areaName);
     //alert("Adding area: " + areaName);
-    createAreasMutation.mutate({ name: areaName });
+    createAreaMutation.mutate({ name: areaName });
   };
 
   const addLocation = () => {
@@ -90,6 +97,15 @@ const AdminPanel: NextPage = () => {
           }}
         >
           <h2 style={{ textAlign: "center" }}>Add Area:</h2>
+
+          <button
+            onClick={() => {
+              setAreaName("");
+            }}
+          >
+            Clear Fields
+          </button>
+
           <label htmlFor="Area Name">Area Name:</label>
           <input
             id="Area Name"
@@ -99,6 +115,7 @@ const AdminPanel: NextPage = () => {
           />
 
           <button onClick={addArea}>Add Area</button>
+          <p>{createAreaMutation.data}</p>
         </div>
 
         <div
@@ -118,6 +135,16 @@ const AdminPanel: NextPage = () => {
             value={locationName}
             onChange={(e) => setLocationName(e.target.value)}
           />
+
+          <button
+            onClick={() => {
+              location_setters.forEach((setter) => setter(""));
+              setLocationSubs([]);
+              setLocationFloorplans([]);
+            }}
+          >
+            Clear Fields
+          </button>
 
           <label htmlFor="Location Address">Location Address:</label>
           <input
@@ -200,6 +227,7 @@ const AdminPanel: NextPage = () => {
           />
 
           <button onClick={addLocation}>Add Location</button>
+          <p>{createLocationMutation.data}</p>
         </div>
       </div>
     </>
