@@ -46,6 +46,7 @@ interface DormProps {
     comfortRating: number;
     locationRating: number;
   }[];
+  refetch: () => void;
 }
 
 export default function Dorm(props: DormProps) {
@@ -350,7 +351,11 @@ export default function Dorm(props: DormProps) {
                 </div>
               ) : (
                 props.reviews.map((review) => (
-                  <DormReview {...review} key={review.id} />
+                  <DormReview
+                    {...review}
+                    key={review.id}
+                    refetch={props.refetch}
+                  />
                 ))
               )
             }

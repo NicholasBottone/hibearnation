@@ -55,12 +55,38 @@ export default function AddImage(props: AddImageProps) {
 
   if (imageURL) {
     return (
-      <div className={styles.PostImageContainer}>
-        <img
-          className={styles.UploadedImage}
-          src={imageURL}
-          alt="Upload preview"
-        />
+      <div className={styles.AddImage}>
+        <div className={styles.ImageUploadContainer}>
+          <p className={styles.ImageUploadLabel}>{imageURL}</p>
+        </div>
+        <div className={styles.ButtonContainer}>
+          <p
+            className={styles.Button}
+            onClick={props.closeModal}
+            style={{ backgroundColor: "#b63f3f", color: "white" }}
+          >
+            Cancel
+          </p>
+          <p
+            className={styles.Button}
+            onClick={() => {
+              if (imageURL) {
+                console.log(imageURL);
+                postMediaMutation.mutate({
+                  media: imageURL,
+                  locationId: props.locationId,
+                });
+              }
+              props.closeModal();
+            }}
+            style={{
+              backgroundColor: "#60ae3c",
+              color: "white",
+            }}
+          >
+            Submit
+          </p>
+        </div>
       </div>
     );
   }

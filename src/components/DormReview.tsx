@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./DormReview.module.css";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { User } from "@prisma/client";
 import { signIn, useSession } from "next-auth/react";
 import { api } from "../utils/api";
@@ -20,6 +20,7 @@ interface BuildingReviewProps {
   amenitiesRating: number;
   comfortRating: number;
   locationRating: number;
+  refetch: () => void;
 }
 
 export default function BuildingReview(props: BuildingReviewProps) {
@@ -28,22 +29,37 @@ export default function BuildingReview(props: BuildingReviewProps) {
   const upvoteCount = props.upvotes ? props.upvotes.length : 0;
   const downvoteCount = props.downvotes ? props.downvotes.length : 0;
   const [count, setCount] = useState(upvoteCount - downvoteCount);
-  const [upvoted, setUpvoted] = useState(props.upvotes?.includes(userId));
-  const [downvoted, setDownvoted] = useState(props.downvotes?.includes(userId));
+  const [upvoted, setUpvoted] = useState(
+    props.upvotes?.map((user) => user.id).includes(userId)
+  );
+  const [downvoted, setDownvote] = useState(
+    props.downvotes?.map((user) => user.id).includes(userId)
+  );
   const upvoteMutation = api.reviews.upvoteReview.useMutation();
+  const undoUpvoteMutation = api.reviews.undoUpvoteReview.useMutation();
   const downvoteMutation = api.reviews.downvoteReview.useMutation();
+  const undoDownvoteMutation = api.reviews.undoDownvoteReview.useMutation();
+
+  useEffect(() => {
+    setUpvoted(props.upvotes?.map((user) => user.id).includes(userId));
+    setDownvote(props.downvotes?.map((user) => user.id).includes(userId));
+    setCount(upvoteCount - downvoteCount);
+  }, [props.upvotes, props.downvotes, downvoteCount, upvoteCount, userId]);
 
   const upvoteAction = () => {
     if (!sessionData) {
       void signIn();
     }
     if (upvoted) {
+      undoUpvoteMutation.mutate({ id: props.id });
       setCount(count - 1);
       setUpvoted(false);
     } else {
+      upvoteMutation.mutate({ id: props.id });
       setUpvoted(true);
       if (downvoted) {
-        setDownvoted(false);
+        undoDownvoteMutation.mutate({ id: props.id });
+        setDownvote(false);
         setCount(count + 2);
       } else {
         setCount(count + 1);
@@ -56,11 +72,14 @@ export default function BuildingReview(props: BuildingReviewProps) {
       void signIn();
     }
     if (downvoted) {
+      undoDownvoteMutation.mutate({ id: props.id });
       setCount(count + 1);
-      setDownvoted(false);
+      setDownvote(false);
     } else {
-      setDownvoted(true);
+      downvoteMutation.mutate({ id: props.id });
+      setDownvote(true);
       if (upvoted) {
+        undoUpvoteMutation.mutate({ id: props.id });
         setUpvoted(false);
         setCount(count - 2);
       } else {

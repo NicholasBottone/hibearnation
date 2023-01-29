@@ -52,6 +52,7 @@ const MyPage: NextPage = () => {
             "https://media.gettyimages.com/id/1420361871/photo/brown-university-grad-center-building.jpg?s=612x612&w=gi&k=20&c=tx5tVly5Ivpkxc5v8SwL1kk8XHzUbxMSECVD307fk9Y=",
             "https://fastly.4sqi.net/img/general/200x200/96202174_EvZ4ECtBXyzkIBtUcRT6C3IPVUyAyHO_1UP-0eDevrE.jpg",
           ]}
+          refetch={() => building.refetch()}
         />
       )}
     </>
