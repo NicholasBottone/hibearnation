@@ -13,7 +13,10 @@ import Review from "./buttons/Review";
 import AddImage from "./buttons/AddImage";
 import { useSession, signIn } from "next-auth/react";
 import { api } from "../utils/api";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import ReactStars from "react-rating-stars-component";
+import { User } from "@prisma/client";
 
 interface DormProps {
   id: string;
@@ -30,18 +33,14 @@ interface DormProps {
   }[];
   images: string[];
   reviews: {
-    id: number;
-    createdAt: string;
-    updatedAt: string;
-    title: string;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
     body: string;
-    author: string;
     authorId: string;
-    location: string;
     locationId: string;
-    media: string[];
-    upvotes: string[];
-    downvotes: string[];
+    upvotes: User[];
+    downvotes: User[];
     overallRating: number;
     amenitiesRating: number;
     comfortRating: number;
