@@ -6,7 +6,13 @@ export const adminRouter = createTRPCRouter({
   createAreas: protectedProcedure
     .input(z.object({ name: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      if (!ctx.session.user.admin) {
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+
+      if (!user?.admin) {
         return "You are not an admin";
       }
 
@@ -33,7 +39,13 @@ export const adminRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      if (!ctx.session.user.admin) {
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+
+      if (!user?.admin) {
         return "You are not an admin";
       }
 

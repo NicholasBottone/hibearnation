@@ -42,4 +42,94 @@ export const reviewsRouter = createTRPCRouter({
         },
       });
     }),
+
+  // Upvotes a review
+  upvoteReview: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const review = await ctx.prisma.review.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+
+      if (!review) {
+        return "Review not found";
+      }
+
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+
+      if (!user) {
+        return "User not found";
+      }
+
+      await ctx.prisma.review.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          upvotes: {
+            connect: {
+              id: user.id,
+            },
+          },
+          downvotes: {
+            disconnect: {
+              id: user.id,
+            },
+          },
+        },
+      });
+
+      return "Upvoted";
+    }),
+
+  // Downvotes a review
+  downvoteReview: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const review = await ctx.prisma.review.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+
+      if (!review) {
+        return "Review not found";
+      }
+
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+
+      if (!user) {
+        return "User not found";
+      }
+
+      await ctx.prisma.review.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          downvotes: {
+            connect: {
+              id: user.id,
+            },
+          },
+          upvotes: {
+            disconnect: {
+              id: user.id,
+            },
+          },
+        },
+      });
+
+      return "Downvoted";
+    }),
 });
