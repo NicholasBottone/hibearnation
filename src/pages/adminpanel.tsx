@@ -23,7 +23,6 @@ const AdminPanel: NextPage = () => {
     setLocationFloorplans([]);
   };
 
-  const [reviewTitle, setReviewTitle] = useState("");
   const [reviewBody, setReviewBody] = useState("");
   const [reviewLocationId, setReviewLocationId] = useState("");
   const [reviewMedia, setReviewMedia] = useState<string[]>([]);
@@ -32,7 +31,6 @@ const AdminPanel: NextPage = () => {
   const [reviewComfortRating, setReviewComfortRating] = useState(5);
   const [reviewLocationRating, setReviewLocationRating] = useState(5);
   const review_reset = () => {
-    setReviewTitle("");
     setReviewBody("");
     setReviewLocationId("");
     setReviewMedia([]);
@@ -100,13 +98,12 @@ const AdminPanel: NextPage = () => {
 
   const addReview = () => {
     console.log("Adding review...");
-    if (reviewTitle === "" || reviewBody === "" || reviewLocationId === "") {
+    if (reviewBody === "" || reviewLocationId === "") {
       console.log("nesecary fields are empty. Not adding review.");
       alert("nesecary fields are empty. Not adding review.");
       return;
     }
     createReviewMutation.mutate({
-      title: reviewTitle,
       body: reviewBody,
       locationId: reviewLocationId,
       media: reviewMedia,
@@ -301,13 +298,6 @@ const AdminPanel: NextPage = () => {
           <h2 style={{ textAlign: "center" }}>Add Review:</h2>
 
           <button onClick={review_reset}>Clear Fields</button>
-
-          <label htmlFor="Review Title">Review Title:</label>
-          <textarea
-            id="Review Title"
-            value={reviewTitle}
-            onChange={(e) => setReviewTitle(e.target.value)}
-          />
 
           <label htmlFor="Review Body">Review Body:</label>
           <textarea
