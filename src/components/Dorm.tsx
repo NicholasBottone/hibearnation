@@ -79,7 +79,7 @@ export default function Dorm(props: DormProps) {
         count++;
       }
     });
-    setOverallRating(total / count);
+    setOverallRating(Math.round((total / count) * 10) / 10);
   }, [props.reviews]);
 
   // alert(overallRating);
