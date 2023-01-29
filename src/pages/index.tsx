@@ -65,36 +65,37 @@ const Home: NextPage = () => {
             <p>Loading...</p>
           </div>
         )}
-
-        <div className={styles.BearAsciiArt}>
-          <pre>{bearAsciiArt}</pre>
-        </div>
-        <div className={styles.HouseAsciiArt}>
-          <pre>{houseAsciiArt}</pre>
-        </div>
-        <div className={styles.SciliAsciiArt}>
-          <pre>{sciliAsciiArt}</pre>
-        </div>
-        <div className={styles.ShowerAsciiArt}>
-          <pre>{showerAsciiArt}</pre>
-        </div>
-        <div className={styles.SofaAsciiArt}>
-          <pre>{sofaAsciiArt}</pre>
-        </div>
-        <div className={styles.ToiletAsciiArt}>
-          <pre>{toiletAsciiArt}</pre>
-        </div>
-        <div className={styles.LightbulbAsciiArt}>
-          <pre>{lightbulbAsciiArt}</pre>
-        </div>
-        <div className={styles.BedAsciiArt}>
-          <pre>{bedAsciiArt}</pre>
-        </div>
-        <div className={styles.ChairAsciiArt}>
-          <pre>{chairAsciiArt}</pre>
-        </div>
-        <div className={styles.SkateboardAsciiArt}>
-          <pre>{skateboardAsciiArt}</pre>
+        <div className={styles.ascii}>
+          <div className={styles.BearAsciiArt}>
+            <pre>{bearAsciiArt}</pre>
+          </div>
+          <div className={styles.HouseAsciiArt}>
+            <pre>{houseAsciiArt}</pre>
+          </div>
+          <div className={styles.SciliAsciiArt}>
+            <pre>{sciliAsciiArt}</pre>
+          </div>
+          <div className={styles.ShowerAsciiArt}>
+            <pre>{showerAsciiArt}</pre>
+          </div>
+          <div className={styles.SofaAsciiArt}>
+            <pre>{sofaAsciiArt}</pre>
+          </div>
+          <div className={styles.ToiletAsciiArt}>
+            <pre>{toiletAsciiArt}</pre>
+          </div>
+          <div className={styles.LightbulbAsciiArt}>
+            <pre>{lightbulbAsciiArt}</pre>
+          </div>
+          <div className={styles.BedAsciiArt}>
+            <pre>{bedAsciiArt}</pre>
+          </div>
+          <div className={styles.ChairAsciiArt}>
+            <pre>{chairAsciiArt}</pre>
+          </div>
+          <div className={styles.SkateboardAsciiArt}>
+            <pre>{skateboardAsciiArt}</pre>
+          </div>
         </div>
       </main>
     </>
