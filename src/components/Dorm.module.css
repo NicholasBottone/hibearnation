@@ -206,3 +206,17 @@
   margin: 0;
   cursor: pointer;
 }
+
+.Windows::-webkit-scrollbar-track {
+  border-left: 1.3px solid #c4c4c4;
+}
+
+.Windows::-webkit-scrollbar {
+  position: absolute;
+  width: 8px;
+}
+
+.Windows::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #999999;
+}

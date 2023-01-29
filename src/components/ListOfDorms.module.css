@@ -11,6 +11,20 @@
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 }
 
+.Windows::-webkit-scrollbar-track {
+  border-left: 1.3px solid #c4c4c4;
+}
+
+.Windows::-webkit-scrollbar {
+  position: absolute;
+  width: 8px;
+}
+
+.Windows::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #999999;
+}
+
 @media (max-width: 768px) {
   .ListOfDorms {
     width: 92vw;
