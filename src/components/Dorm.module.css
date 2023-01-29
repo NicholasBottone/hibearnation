@@ -268,3 +268,26 @@
   font-weight: 600;
   color: rgb(95, 21, 21);
 }
+
+.noImages {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  color: white;
+}
+
+.buildingNone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40vh;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: rgb(80, 36, 36);
+  text-align: center;
+}

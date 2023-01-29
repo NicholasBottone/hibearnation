@@ -138,23 +138,31 @@ export default function Dorm(props: DormProps) {
         </h1>
       </div>
 
-      <div className={styles.buildingSlideshow}>
-        {props.images.slice(0, numImages).map((image, idx) => (
-          <img
-            src={image}
-            className={styles.buildingImage}
-            alt={`Frame ${idx + 1}`}
-            onClick={() => {
-              setShowLightbox(true);
-              setLightboxEntry(idx);
-            }}
-            key={idx}
-            style={{
-              width: `${100 / numImages}%`,
-            }}
-          />
-        ))}
-      </div>
+      {props.images.length > 0 ? (
+        <div className={styles.buildingSlideshow}>
+          {props.images.slice(0, numImages).map((image, idx) => (
+            <img
+              src={image}
+              className={styles.buildingImage}
+              alt={`Frame ${idx + 1}`}
+              onClick={() => {
+                setShowLightbox(true);
+                setLightboxEntry(idx);
+              }}
+              key={idx}
+              style={{
+                width: `${100 / numImages}%`,
+              }}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className={styles.buildingNone}>
+          <div className={styles.noImages}>
+            <h1>No images available, be the first!</h1>
+          </div>
+        </div>
+      )}
 
       <Lightbox
         open={showLightbox}
