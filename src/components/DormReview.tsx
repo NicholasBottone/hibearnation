@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./DormReview.module.css";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
+import { ImArrowUp, ImArrowDown } from "react-icons/im";
 
 interface BuildingReviewProps {
   id: number;

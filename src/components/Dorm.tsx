@@ -6,6 +6,11 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import DormReview from "./DormReview";
+import BuildingReview from "./DormReview";
+import { AiFillHome } from "react-icons/ai";
+import { BiPlusMedical } from "react-icons/bi";
+import Modal from "./Modal";
+import Review from "./Review";
 
 interface DormProps {
   name: string;
@@ -20,6 +25,7 @@ interface DormProps {
 export default function Dorm(props: DormProps) {
   // State for reviews
   const [buildingReviews, setBuildingReviews] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   // Lightbox
   const [showLightbox, setShowLightbox] = useState(false);
@@ -76,9 +82,7 @@ export default function Dorm(props: DormProps) {
   return (
     <div className={styles.buildingContainer}>
       <div className={styles.buildingHeader}>
-        <img
-          src="/icon.png"
-          alt="logo"
+        <AiFillHome
           className={styles.logo}
           onClick={() => {
             window.location.href = "/";
@@ -116,6 +120,14 @@ export default function Dorm(props: DormProps) {
       />
 
       {/* Content */}
+      <Modal show={showModal}>
+        <Review
+          location={props.name}
+          closeModal={() => {
+            setShowModal(false);
+          }}
+        />
+      </Modal>
       <div className={styles.buildingContentContainer}>
         <div className={styles.gridColOne}>
           <div className={styles.itemOne}>
@@ -178,7 +190,18 @@ export default function Dorm(props: DormProps) {
           </div>
         </div>
         <div className={styles.gridColTwo}>
-          <h1 className={styles.sectionTitle}>Reviews ({reviews.length})</h1>
+          <div className={styles.ReviewHeader}>
+            <h1 className={styles.sectionTitle}>Reviews ({reviews.length})</h1>
+            <div
+              onClick={() => {
+                setShowModal(true);
+              }}
+              className={styles.addReview}
+            >
+              Add Review
+              <BiPlusMedical />
+            </div>
+          </div>
           {/* <WriteReplyModal
           isOpen={writeReplyModal}
           onClose={() => setWriteReplyModal(false)}

@@ -9,6 +9,7 @@ import ReactStars from "react-rating-stars-component";
 interface ReviewProps {
   location: string;
   closeModal: () => void;
+  backgroundImage?: string;
 }
 
 export default function Review(props: ReviewProps) {
@@ -91,10 +92,21 @@ export default function Review(props: ReviewProps) {
         />
       </div>
       <div className={styles.ButtonContainer}>
-        <p className={styles.Button} onClick={props.closeModal}>
+        <p
+          className={styles.Button}
+          onClick={props.closeModal}
+          style={{ backgroundColor: "#b63f3f", color: "white" }}
+        >
           Cancel
         </p>
-        <p className={styles.Button} onClick={props.closeModal}>
+        <p
+          className={styles.Button}
+          onClick={props.closeModal}
+          style={{
+            backgroundColor: "#60ae3c",
+            color: "white",
+          }}
+        >
           Submit
         </p>
       </div>
