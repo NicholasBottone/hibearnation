@@ -23,7 +23,7 @@ import {
 const Home: NextPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
-  const { data } = api.locations.getAll.useQuery();
+  const { data } = api.locations.getNames.useQuery();
   return (
     <>
       <Head>
@@ -54,44 +54,47 @@ const Home: NextPage = () => {
           hi<b style={{ color: "#822b2e" }}>bear</b>nation
         </p>
         <Searchbar search={search} setSearch={setSearch} />
-        <div className={styles.container}>
-          <ListOfDorms
-            dorms={[
-              "Caswell Hall",
-              "Grad Center A",
-              "Grad Center B",
-              "Grad Center C",
-              "Grad Center D",
-              "Gregorian Quad A",
-              "Gregorian Quad B",
-              "Hegeman Hall",
-              "Hope College",
-              "Littlefield Hall",
-              "Minden Hall",
-              "New Pembroke 1",
-              "New Pembroke 2",
-              "Perkins Hall",
-              "Slater Hall",
-              "Young Orchard 10",
-              "Young Orchard 2",
-              "Young Orchard 4",
-            ]}
-            curSearch={search}
-          />
-          <div className={styles.ascii}>
-            <pre className={styles.BearAsciiArt}>{bearAsciiArt}</pre>
-            <pre className={styles.HouseAsciiArt}>{houseAsciiArt}</pre>
-            <pre className={styles.SciliAsciiArt}>{sciliAsciiArt}</pre>
-            <pre className={styles.ShowerAsciiArt}>{showerAsciiArt}</pre>
-            <pre className={styles.SofaAsciiArt}>{sofaAsciiArt}</pre>
-            <pre className={styles.ChairAsciiArt}>{chairAsciiArt}</pre>
-            <pre className={styles.SkateboardAsciiArt}>
-              {skateboardAsciiArt}
-            </pre>
-            <pre className={styles.LightbulbAsciiArt}>{lightbulbAsciiArt}</pre>
-            <pre className={styles.ToiletAsciiArt}>{toiletAsciiArt}</pre>
-            <pre className={styles.BedAsciiArt}>{bedAsciiArt}</pre>
+
+        {/* ternary operator for if data is undefined */}
+        {data ? (
+          <div className={styles.container}>
+            <ListOfDorms dorms={data} curSearch={search} />
           </div>
+        ) : (
+          <div>
+            <p>Loading...</p>
+          </div>
+        )}
+
+        <div className={styles.BearAsciiArt}>
+          <pre>{bearAsciiArt}</pre>
+        </div>
+        <div className={styles.HouseAsciiArt}>
+          <pre>{houseAsciiArt}</pre>
+        </div>
+        <div className={styles.SciliAsciiArt}>
+          <pre>{sciliAsciiArt}</pre>
+        </div>
+        <div className={styles.ShowerAsciiArt}>
+          <pre>{showerAsciiArt}</pre>
+        </div>
+        <div className={styles.SofaAsciiArt}>
+          <pre>{sofaAsciiArt}</pre>
+        </div>
+        <div className={styles.ToiletAsciiArt}>
+          <pre>{toiletAsciiArt}</pre>
+        </div>
+        <div className={styles.LightbulbAsciiArt}>
+          <pre>{lightbulbAsciiArt}</pre>
+        </div>
+        <div className={styles.BedAsciiArt}>
+          <pre>{bedAsciiArt}</pre>
+        </div>
+        <div className={styles.ChairAsciiArt}>
+          <pre>{chairAsciiArt}</pre>
+        </div>
+        <div className={styles.SkateboardAsciiArt}>
+          <pre>{skateboardAsciiArt}</pre>
         </div>
       </main>
     </>

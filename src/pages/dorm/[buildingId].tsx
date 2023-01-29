@@ -1,12 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { type NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { api } from "../../utils/api";
+import { env } from "../../env/client.mjs";
 
-import Building from "../components/Building";
+import Building from "../../components/Building";
+import Map, { Marker } from "react-map-gl";
 
 // export default function building() {
 const MyPage: NextPage = () => {
-  const [search, setSearch] = useState("");
+  // React Mapbox GL
+  // Dorm coordinates for map
+  const [viewState, setViewState] = useState({
+    longitude: 0,
+    latitude: 0,
+    zoom: 10,
+  });
+  const [marker, setMarker] = useState({
+    longitude: 0,
+    latitude: 0,
+  });
+
+  const router = useRouter();
+  const buildingId = router.query.buildingId;
+
+  // API call to get the building info by its ID
+  // Check if buildingId is a string
+  if (typeof buildingId !== "string") {
+    return <div>Invalid building ID</div>;
+  }
+  const building = api.locations.getOne.useQuery({ id: buildingId });
+  console.log(building);
 
   return (
     <>
