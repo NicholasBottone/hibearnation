@@ -35,7 +35,7 @@ export const adminRouter = createTRPCRouter({
         address: z.string(),
         coordinates: z.string(),
         sublocations: z.array(z.string()),
-        floorplans: z.array(z.string()),
+        floorplans: z.array(z.object({ url: z.string(), name: z.string() })),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -49,7 +49,7 @@ export const adminRouter = createTRPCRouter({
         return "You are not an admin";
       }
 
-      await ctx.prisma.location.create({
+      const location = await ctx.prisma.location.create({
         data: {
           name: input.name,
           summary: input.summary,
@@ -57,8 +57,15 @@ export const adminRouter = createTRPCRouter({
           address: input.address,
           coordinates: input.coordinates,
           sublocations: input.sublocations,
-          floorplans: input.floorplans,
         },
+      });
+
+      await ctx.prisma.floorPlan.createMany({
+        data: input.floorplans.map((floorplan) => ({
+          url: floorplan.url,
+          name: floorplan.name,
+          locationId: location.id,
+        })),
       });
 
       return "Locations created";

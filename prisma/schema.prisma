@@ -21,29 +21,36 @@ model Area {
 }
 
 model Location {
-  id           String   @id @default(cuid())
-  name         String   @unique
-  summary      String   @db.Text
+  id           String      @id @default(cuid())
+  name         String      @unique
+  summary      String      @db.Text
   address      String
   coordinates  String
   Review       Review[]
-  Area         Area     @relation(fields: [areaName], references: [name], onDelete: Cascade)
+  Area         Area        @relation(fields: [areaName], references: [name], onDelete: Cascade)
   areaName     String
   sublocations String[]
-  floorplans   String[]
+  Media        Media[]
+  FloorPlan    FloorPlan[]
+}
+
+model FloorPlan {
+  id         String   @id @default(cuid())
+  name       String
+  url        String
+  Location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  locationId String
 }
 
 model Review {
   id              String   @id @default(cuid())
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  title           String
   body            String   @db.Text
   author          User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId        String
   location        Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
   locationId      String
-  media           String[]
   upvotes         User[]   @relation("upvotes")
   downvotes       User[]   @relation("downvotes")
   // ratings are on a scale from 1-10
@@ -51,6 +58,16 @@ model Review {
   amenitiesRating Int
   comfortRating   Int
   locationRating  Int
+}
+
+model Media {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  url        String
+  Location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  locationId String
+  author     User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId   String
 }
 
 // Necessary for Next auth
@@ -93,6 +110,7 @@ model User {
   downvotes     Review[]  @relation("downvotes")
   admin         Boolean   @default(false)
   emailVerified Boolean?
+  Media         Media[]
 }
 
 model VerificationToken {

@@ -17,10 +17,8 @@ export const reviewsRouter = createTRPCRouter({
   createReview: protectedProcedure
     .input(
       z.object({
-        title: z.string(),
         body: z.string(),
         locationId: z.string(),
-        media: z.array(z.string()).optional(),
         overallRating: z.number().int().min(1).max(10),
         amenitiesRating: z.number().int().min(1).max(10),
         comfortRating: z.number().int().min(1).max(10),
@@ -30,10 +28,8 @@ export const reviewsRouter = createTRPCRouter({
     .mutation(({ ctx, input }) => {
       return ctx.prisma.review.create({
         data: {
-          title: input.title,
           body: input.body,
           locationId: input.locationId,
-          media: input.media ?? [],
           overallRating: input.overallRating,
           amenitiesRating: input.amenitiesRating,
           comfortRating: input.comfortRating,
@@ -41,6 +37,49 @@ export const reviewsRouter = createTRPCRouter({
           authorId: ctx.session.user.id,
         },
       });
+    }),
+
+  // Posts media to a location
+  postMedia: protectedProcedure
+    .input(
+      z.object({
+        locationId: z.string(),
+        media: z
+          .string()
+          .url()
+          .regex(/https:\/\/i\.imgur\.com\/.*/),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const location = await ctx.prisma.location.findUnique({
+        where: {
+          id: input.locationId,
+        },
+      });
+
+      if (!location) {
+        return "Location not found";
+      }
+
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+
+      if (!user) {
+        return "User not found";
+      }
+
+      await ctx.prisma.media.create({
+        data: {
+          locationId: input.locationId,
+          url: input.media,
+          authorId: user.id,
+        },
+      });
+
+      return "Media posted";
     }),
 
   // Upvotes a review
