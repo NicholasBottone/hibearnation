@@ -5,7 +5,7 @@ import styles from "./Building.module.css";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import BuildingReview from "./BuildingReview";
+import BuildingReview from "./DormReview";
 
 interface BuildingProps {
   name: string;
@@ -164,9 +164,7 @@ export default function Building2(props: BuildingProps) {
           </div>
         </div>
         <div className={styles.gridColTwo}>
-          <h1 className={styles.sectionTitle}>
-            Reviews ({buildingReviews.length})
-          </h1>
+          <h1 className={styles.sectionTitle}>Reviews ({reviews.length})</h1>
           {/* <WriteReplyModal
           isOpen={writeReplyModal}
           onClose={() => setWriteReplyModal(false)}
@@ -181,7 +179,7 @@ export default function Building2(props: BuildingProps) {
                 </div>
               ) : (
                 reviews.map((review) => (
-                  <BuildingReview review={review} key={review.id} />
+                  <BuildingReview {...review} key={review.id} />
                 ))
               )
             }

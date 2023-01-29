@@ -80,7 +80,6 @@
   justify-content: center;
   height: 62%;
   width: 42%;
-  background-color: #e0c3bc;
   color: rgb(0, 0, 0);
   border: 2px solid rgb(0, 0, 0);
   border-radius: 4px;
@@ -100,7 +99,7 @@
 
 @media (max-width: 768px) {
   .Review {
-    height: 90vh;
+    height: 95vh;
     width: 90vw;
   }
 

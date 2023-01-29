@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./DormReview.module.css";
 
 interface BuildingReviewProps {
   id: number;
@@ -21,25 +22,16 @@ interface BuildingReviewProps {
 
 export default function BuildingReview(props: BuildingReviewProps) {
   return (
-    <div className="reviewContainer">
-      <div className="reviewTitleBar">
-        <img src="/anonymous.png" alt="anonymous" />
+    <div className={styles.BuildingReview}>
+      <div className={styles.reviewHeader}>
         <strong>
           {props.author} - {props.overallRating} / 5
         </strong>
       </div>
       <div className="reviewContent">{props.body}</div>
-      <div className="reviewFooter">
+      {/* <div className="reviewFooter">
         <p>Last Modified: {props.updatedAt}</p>
-        {/* <Button
-          text="Reply"
-          style={reviewButtonStyle}
-          onClick={() => {
-            setParentReview(review.reviewId);
-            setWriteReplyModal(true);
-          }}
-        /> */}
-      </div>
+      </div> */}
     </div>
   );
 }

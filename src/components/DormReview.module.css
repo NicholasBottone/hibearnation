@@ -1,0 +1,14 @@
+.BuildingReview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem 2rem 1rem;
+  text-align: left;
+}
+
+.BuildingReview + .BuildingReview {
+  border-top: 2px solid black;
+}
