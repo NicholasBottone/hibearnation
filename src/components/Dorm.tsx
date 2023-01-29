@@ -14,6 +14,7 @@ import AddImage from "./buttons/AddImage";
 import { useSession, signIn } from "next-auth/react";
 
 interface DormProps {
+  id: string;
   name: string;
   areaName: string;
   summary: string;
@@ -190,6 +191,7 @@ export default function Dorm(props: DormProps) {
           closeModal={() => {
             setShowReviewModal(false);
           }}
+          id={props.id}
         />
       </Modal>
       <div className={styles.buildingContentContainer}>

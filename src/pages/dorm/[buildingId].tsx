@@ -37,6 +37,7 @@ const MyPage: NextPage = () => {
         <div>Loading...</div>
       ) : (
         <Dorm
+          id={building.data.id}
           name={building.data.name}
           areaName={building.data.areaName}
           summary={building.data.summary}

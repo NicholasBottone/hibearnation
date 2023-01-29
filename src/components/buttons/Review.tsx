@@ -1,14 +1,16 @@
 import React from "react";
 import styles from "./Review.module.css";
 import { useState } from "react";
-import { CgCloseR } from "react-icons/cg";
+import { useSession } from "next-auth/react";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ReactStars from "react-rating-stars-component";
+import { api } from "../../utils/api";
 
 interface ReviewProps {
   location: string;
   closeModal: () => void;
+  id: string;
   backgroundImage?: string;
 }
 
@@ -17,6 +19,8 @@ export default function Review(props: ReviewProps) {
   const [locationRating, setLocationRating] = useState(0);
   const [comfortRating, setComfortRating] = useState(0);
   const [review, setReview] = useState("");
+  const { data: sessionData } = useSession();
+  const createReviewMutation = api.reviews.createReview.useMutation();
 
   const amenitiesRate = (newRating: number) => {
     setAmenitiesRating(newRating);
@@ -29,6 +33,43 @@ export default function Review(props: ReviewProps) {
   const comfortRate = (newRating: number) => {
     setComfortRating(newRating);
   };
+
+  // createdAt: "2021-01-01",
+  // updatedAt: "2021-01-01",
+  // title: "Great place to live",
+  // body: "I lived here for 2 years and it was great. The rooms are spacious and the bathrooms are clean. The laundry is on the 3rd floor and the machines are new. The location is great and the building is quiet. The only downside is that the building is a bit old and the elevators are slow.",
+  // author: "Andrew",
+  // authorId: "1",
+  // location: "Grad Center A",
+  // locationId: "1",
+  // media: [],
+  // upvotes: [],
+  // downvotes: [],
+  // overallRating: 8,
+  // amenitiesRating: 8,
+  // comfortRating: 8,
+  // locationRating: 8,
+
+  const totalReview = sessionData
+    ? {
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        title: "",
+        body: review,
+        author: sessionData.user?.name,
+        authorId: sessionData.user?.id,
+        location: props.location,
+        locationId: props.id,
+        media: undefined,
+        upvotes: undefined,
+        downvotes: undefined,
+        overallRating:
+          (amenitiesRating * 2 + locationRating * 2 + comfortRating * 2) / 3,
+        amenitiesRating: amenitiesRating * 2,
+        comfortRating: comfortRating * 2,
+        locationRating: locationRating * 2,
+      }
+    : null;
 
   return (
     <div className={styles.Review}>
@@ -101,7 +142,12 @@ export default function Review(props: ReviewProps) {
         </p>
         <p
           className={styles.Button}
-          onClick={props.closeModal}
+          onClick={() => {
+            if (totalReview) {
+              createReviewMutation.mutate(totalReview);
+            }
+            props.closeModal();
+          }}
           style={{
             backgroundColor: "#60ae3c",
             color: "white",
