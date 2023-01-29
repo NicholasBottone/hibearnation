@@ -1,21 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AddImage.module.css";
+
+import { BiImageAdd } from "react-icons/bi";
 
 interface AddImageProps {
   closeModal: () => void;
 }
 
 export default function AddImage(props: AddImageProps) {
+  const [uploading, setUploading] = useState(false);
+
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("image", file);
+    setUploading(true);
+    fetch("https://api.imgur.com/3/image", {
+      method: "POST",
+      headers: {
+        Authorization: `Client-ID ${
+          process.env.NEXT_PUBLIC_IMGUR_CLIENT_ID ?? ""
+        }`,
+      },
+      body: formData,
+    })
+      .then((res) => {
+        res
+          .json()
+          .then((data) => {
+            // props.setImageURL((data as { data: { link: string } }).data.link);
+            setUploading(false);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  if (uploading) {
+    return (
+      <div className={styles.ImageUpload}>
+        <div className={styles.ImageUploadBox}>
+          <BiImageAdd size="4em" />
+          Uploading image...
+        </div>
+      </div>
+    );
+  }
+
+  // if (props.imageURL) {
+  //   return (
+  //     <div
+  //       className={
+  //         props.type === "post"
+  //           ? styles.PostImageContainer
+  //           : styles.EventImageContainer
+  //       }
+  //     >
+  //       <img
+  //         className={styles.UploadedImage}
+  //         src={props.imageURL}
+  //         alt="Upload preview"
+  //       />
+  //     </div>
+  //   );
+  // }
+
   return (
     <div className={styles.AddImage}>
-      <h1 className={styles.Title}>Add Image</h1>
-      <p>
-        Please upload an image of the location you are reviewing. This image
-        will be displayed on the location&apos;s page and will be used to help
-        others view the location. Please make sure the image is a .jpg or .png
-        file.
-      </p>
-      <input type="file" className={styles.Button} />
+      <div className={styles.ImageUploadContainer}>
+        <label className={styles.ImageUploadLabel}>
+          <input
+            className={styles.ImageInput}
+            type="file"
+            accept="image/*"
+            onChange={onFileChange}
+          />
+          <div className={styles.UploadButton}>
+            <BiImageAdd className={styles.UploadImageIcon} />
+          </div>
+        </label>
+      </div>
       <div className={styles.ButtonContainer}>
         <p
           className={styles.Button}
@@ -24,7 +91,6 @@ export default function AddImage(props: AddImageProps) {
         >
           Cancel
         </p>
-        {/* TODO: Add submit button functionality */}
         <p
           className={styles.Button}
           onClick={props.closeModal}

@@ -5,18 +5,49 @@
   height: 50vh;
   width: 50vw;
   align-items: center;
+  justify-content: center;
   background-color: #eac9c1;
   border: 2px solid black;
   border-radius: 10px;
-  gap: 1rem;
+  /* gap: 1rem; */
+  margin: 1rem;
 }
 
-.Title {
-  font-weight: 500;
-  font-size: 1.5rem;
-  margin-bottom: 0;
+.ImageUploadContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  border: 2px solid black;
   margin-top: 2rem;
-  height: 10%;
+}
+
+.ImageUploadLabel {
+  width: 100%;
+}
+
+.ImageInput {
+  height: 100%;
+}
+
+.UploadButton {
+  /* border: 2px solid blue; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.UploadButton:hover {
+  cursor: pointer;
+}
+
+.UploadImageIcon {
+  height: 6rem;
+  width: 6rem;
 }
 
 .AddImage > p {
@@ -24,8 +55,12 @@
   font-weight: 400;
   margin-bottom: 0rem;
   color: black;
-  text-align: left;
+  /* text-align: left; */
   padding: 0 2rem;
+}
+
+.ImageInput {
+  display: none;
 }
 
 .ButtonContainer {
@@ -36,7 +71,6 @@
   height: 30%;
   width: 100%;
   margin: 0;
-  margin-bottom: 1rem;
 }
 
 .Button {
@@ -44,7 +78,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 62%;
+  height: 3rem;
   width: 42%;
   color: rgb(0, 0, 0);
   border-radius: 4px;
@@ -52,4 +86,25 @@
   font-weight: 700;
   cursor: pointer;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .AddImage {
+    height: 95vh;
+    width: 90vw;
+  }
+
+  .UploadImageIcon {
+    height: 7rem;
+    width: 7rem;
+  }
+  /* 
+  .RatingContainer {
+    margin-top: 1rem;
+    flex-direction: column;
+  }
+
+  .Rating > h1 {
+    margin: 0;
+  } */
 }

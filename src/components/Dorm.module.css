@@ -38,6 +38,7 @@
 
 .buildingImage:hover {
   cursor: zoom-in;
+  -webkit-filter: brightness(120%);
 }
 
 .summaryHeader {
