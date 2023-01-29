@@ -127,7 +127,8 @@
   border: 2px solid black;
   border-radius: 10px;
   max-height: 37vh;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-bottom: 1rem;
 }
 
