@@ -43,7 +43,7 @@ const MyPage: NextPage = () => {
           summary={building.data.summary}
           location={building.data.address}
           sublocations={building.data.sublocations}
-          floorplans={building.data.floorplans}
+          floorplans={building.data.FloorPlan}
           images={[
             "https://reslife.brown.edu/sites/default/files/styles/classic_xsml/public/2020-04/GradCtrB_2.jpg?h=7e0400c3&itok=0Tgxt1fl",
             "https://upload.wikimedia.org/wikipedia/commons/8/85/BrownUniversity-GraduateCenter.jpg",

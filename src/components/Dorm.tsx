@@ -20,7 +20,12 @@ interface DormProps {
   summary: string;
   location: string;
   sublocations: string[];
-  floorplans: string[];
+  floorplans: {
+    id: string;
+    locationId: string;
+    name: string;
+    url: string;
+  }[];
   images: string[];
 }
 
@@ -232,11 +237,11 @@ export default function Dorm(props: DormProps) {
                   <a
                     className={styles.link}
                     key={idx}
-                    href={floorplan}
+                    href={floorplan.url}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {idx}{" "}
+                    {floorplan.name}{" "}
                   </a>
                 ))}
           </div>
