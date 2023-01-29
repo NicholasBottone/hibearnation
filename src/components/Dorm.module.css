@@ -119,6 +119,7 @@
   padding-left: 20px;
   text-align: center;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .scrollable {
@@ -126,10 +127,8 @@
   background-color: white;
   border: 2px solid black;
   border-radius: 10px;
-  max-height: 37vh;
   overflow-y: auto;
   overflow-x: hidden;
-  margin-bottom: 1rem;
 }
 
 .sectionTitle {

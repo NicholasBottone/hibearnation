@@ -333,6 +333,10 @@ export default function Dorm(props: DormProps) {
                   styles.scrollable + " " + styles.Windows
                 : styles.scrollable
             }
+            style={{
+              height: props.reviews.length <= 3 ? "fit-content" : "50vh",
+              minHeight: props.reviews.length <= 3 ? "0px" : "400px",
+            }}
           >
             {
               // If there are no reviews, display an empty state
