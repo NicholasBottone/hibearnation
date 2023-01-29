@@ -28,7 +28,7 @@ const MyPage: NextPage = () => {
           name="description"
           content="A Brown University dorm review and information site."
         />
-        <meta name="theme-color" content="#4285f4" />
+        <meta name="theme-color" content="#eac9c1" />
         <link rel="icon" href="/icon.png" />
       </Head>
 

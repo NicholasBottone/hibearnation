@@ -73,7 +73,7 @@ export default function BuildingReview(props: BuildingReviewProps) {
               backgroundColor: "#a2f0a2",
               padding: "0.03rem 0.4rem",
               borderRadius: "0.2rem",
-              border: "1px solid #6ef96e",
+              border: "1px solid #3ead32",
             }}
           >
             {props.locationRating / 2} / 5 <b className={styles.emoji}>📍</b>

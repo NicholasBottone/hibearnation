@@ -50,10 +50,25 @@ interface DormProps {
 
 export default function Dorm(props: DormProps) {
   // State for reviews
-  const [buildingReviews, setBuildingReviews] = useState([]);
   const [showAddImageModal, setShowAddImageModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const { data: sessionData } = useSession();
+
+  let averageAmenitiesRating = props.reviews.reduce(
+    (acc, review) => acc + review.amenitiesRating,
+    0
+  );
+  averageAmenitiesRating /= props.reviews.length;
+  let averageComfortRating = props.reviews.reduce(
+    (acc, review) => acc + review.comfortRating,
+    0
+  );
+  averageComfortRating /= props.reviews.length;
+  let averageLocationRating = props.reviews.reduce(
+    (acc, review) => acc + review.locationRating,
+    0
+  );
+  averageLocationRating /= props.reviews.length;
 
   // Lightbox
   const [showLightbox, setShowLightbox] = useState(false);
@@ -66,6 +81,7 @@ export default function Dorm(props: DormProps) {
     [lightboxEntry]
   );
   const numImages = props.images.length > 3 ? 3 : props.images.length;
+
   const getOS = () => {
     const userAgent = window.navigator.userAgent;
     const platform = window.navigator.platform;
@@ -113,8 +129,10 @@ export default function Dorm(props: DormProps) {
             window.location.href = "/";
           }}
         />
+
         <h1 className={styles.buildingHeader}>
-          {props.name} ({overallRating ? overallRating.toFixed(2) : "NA"} / 10)
+          {props.name}{" "}
+          {overallRating ? "(" + overallRating.toFixed(2) + " / 10)" : ""}
         </h1>
       </div>
 
@@ -168,7 +186,46 @@ export default function Dorm(props: DormProps) {
         <div className={styles.gridColOne}>
           <div className={styles.itemOne}>
             <div className={styles.summaryHeader}>
-              <h1 className={styles.sectionTitle}>Summary</h1>
+              <div className={styles.leftSide}>
+                <h1 className={styles.sectionTitle}>Summary</h1>
+                {!isNaN(averageAmenitiesRating) && (
+                  <div className={styles.summaryEmojis}>
+                    <div
+                      style={{
+                        backgroundColor: "#a2f0f9",
+                        padding: "0.03rem 0.4rem",
+                        borderRadius: "0.2rem",
+                        border: "1px solid #6ed5f9",
+                      }}
+                    >
+                      {(averageAmenitiesRating / 2).toFixed(2)} / 5{" "}
+                      <b className={styles.emoji}>🚿</b>
+                    </div>
+                    <div
+                      style={{
+                        backgroundColor: "#f9a2a2",
+                        padding: "0.03rem 0.4rem",
+                        borderRadius: "0.2rem",
+                        border: "1px solid #f96e6e",
+                      }}
+                    >
+                      {(averageComfortRating / 2).toFixed(2)} / 5{" "}
+                      <b className={styles.emoji}>🛌</b>
+                    </div>
+                    <div
+                      style={{
+                        backgroundColor: "#a2f0a2",
+                        padding: "0.03rem 0.4rem",
+                        borderRadius: "0.2rem",
+                        border: "1px solid #3ead32",
+                      }}
+                    >
+                      {(averageLocationRating / 2).toFixed(2)} / 5{" "}
+                      <b className={styles.emoji}>📍</b>
+                    </div>
+                  </div>
+                )}
+              </div>
               <div
                 onClick={() => {
                   sessionData ? setShowAddImageModal(true) : void signIn();
@@ -180,6 +237,43 @@ export default function Dorm(props: DormProps) {
               </div>
             </div>
             {props.summary}
+            {!isNaN(averageAmenitiesRating) && (
+              <div className={styles.phoneEmojis}>
+                <div
+                  style={{
+                    backgroundColor: "#a2f0f9",
+                    padding: "0.03rem 0.4rem",
+                    borderRadius: "0.2rem",
+                    border: "1px solid #6ed5f9",
+                  }}
+                >
+                  {(averageAmenitiesRating / 2).toFixed(2)} / 5{" "}
+                  <b className={styles.emoji}>🚿</b>
+                </div>
+                <div
+                  style={{
+                    backgroundColor: "#f9a2a2",
+                    padding: "0.03rem 0.4rem",
+                    borderRadius: "0.2rem",
+                    border: "1px solid #f96e6e",
+                  }}
+                >
+                  {(averageComfortRating / 2).toFixed(2)} / 5{" "}
+                  <b className={styles.emoji}>🛌</b>
+                </div>
+                <div
+                  style={{
+                    backgroundColor: "#a2f0a2",
+                    padding: "0.03rem 0.4rem",
+                    borderRadius: "0.2rem",
+                    border: "1px solid #3ead32",
+                  }}
+                >
+                  {(averageLocationRating / 2).toFixed(2)} / 5{" "}
+                  <b className={styles.emoji}>📍</b>
+                </div>
+              </div>
+            )}
           </div>
           <div className={styles.itemTwo}>
             <div className={styles.sectionDivider} />
