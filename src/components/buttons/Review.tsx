@@ -15,12 +15,17 @@ interface ReviewProps {
 }
 
 export default function Review(props: ReviewProps) {
+  const [overallRating, setOverallRating] = useState(0);
   const [amenitiesRating, setAmenitiesRating] = useState(0);
   const [locationRating, setLocationRating] = useState(0);
   const [comfortRating, setComfortRating] = useState(0);
   const [review, setReview] = useState("");
   const { data: sessionData } = useSession();
   const createReviewMutation = api.reviews.createReview.useMutation();
+
+  const overallRate = (newRating: number) => {
+    setOverallRating(newRating);
+  };
 
   const amenitiesRate = (newRating: number) => {
     setAmenitiesRating(newRating);
@@ -63,8 +68,9 @@ export default function Review(props: ReviewProps) {
         media: undefined,
         upvotes: undefined,
         downvotes: undefined,
-        overallRating:
-          ((amenitiesRating + locationRating + comfortRating) / 3) * 2,
+        overallRating: Math.floor(
+          ((amenitiesRating + locationRating + comfortRating) / 3) * 2
+        ),
         amenitiesRating: amenitiesRating * 2,
         comfortRating: comfortRating * 2,
         locationRating: locationRating * 2,
@@ -81,11 +87,25 @@ export default function Review(props: ReviewProps) {
       </h1>
       <div className={styles.RatingContainer}>
         <div className={styles.Rating}>
+          <h1 style={{ fontWeight: "bold" }}>Overall</h1>
+          <ReactStars
+            count={5}
+            onChange={overallRate}
+            size={30}
+            isHalf={true}
+            emptyIcon={<i className="far fa-star"></i>}
+            halfIcon={<i className="fa fa-star-half-alt"></i>}
+            fullIcon={<i className="fa fa-star"></i>}
+            activeColor="#ebab34"
+            color="black"
+          />
+        </div>
+        <div className={styles.Rating}>
           <h1>Amenities</h1>
           <ReactStars
             count={5}
             onChange={amenitiesRate}
-            size={35}
+            size={30}
             isHalf={true}
             emptyIcon={<i className="far fa-star"></i>}
             halfIcon={<i className="fa fa-star-half-alt"></i>}
@@ -99,7 +119,7 @@ export default function Review(props: ReviewProps) {
           <ReactStars
             count={5}
             onChange={locationRate}
-            size={35}
+            size={30}
             isHalf={true}
             emptyIcon={<i className="far fa-star"></i>}
             halfIcon={<i className="fa fa-star-half-alt"></i>}
@@ -113,7 +133,7 @@ export default function Review(props: ReviewProps) {
           <ReactStars
             count={5}
             onChange={comfortRate}
-            size={35}
+            size={30}
             isHalf={true}
             emptyIcon={<i className="far fa-star"></i>}
             halfIcon={<i className="fa fa-star-half-alt"></i>}

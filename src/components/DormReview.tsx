@@ -27,11 +27,11 @@ export default function BuildingReview(props: BuildingReviewProps) {
     <div className={styles.BuildingReview}>
       <div className={styles.UpvoteDownvote}>
         <div className={styles.Pair}>
-          <p>{props.upvotes.length}</p>
+          <p>{props.upvotes ? props.upvotes.length : 0}</p>
           <BiUpvote className={styles.Upvote} />
         </div>
         <div className={styles.Pair}>
-          <p>{props.downvotes.length}</p>
+          <p>{props.downvotes ? props.downvotes.length : 0}</p>
           <BiDownvote className={styles.Downvote} />
         </div>
       </div>

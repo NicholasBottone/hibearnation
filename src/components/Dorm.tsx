@@ -28,6 +28,24 @@ interface DormProps {
     url: string;
   }[];
   images: string[];
+  reviews: {
+    id: number;
+    createdAt: string;
+    updatedAt: string;
+    title: string;
+    body: string;
+    author: string;
+    authorId: string;
+    location: string;
+    locationId: string;
+    media: string[];
+    upvotes: string[];
+    downvotes: string[];
+    overallRating: number;
+    amenitiesRating: number;
+    comfortRating: number;
+    locationRating: number;
+  }[];
 }
 
 export default function Dorm(props: DormProps) {
@@ -36,9 +54,6 @@ export default function Dorm(props: DormProps) {
   const [showAddImageModal, setShowAddImageModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const { data: sessionData } = useSession();
-  const { data: allReviews } = api.reviews.getByLocation.useQuery({
-    id: props.id,
-  });
 
   // Lightbox
   const [showLightbox, setShowLightbox] = useState(false);
@@ -51,100 +66,6 @@ export default function Dorm(props: DormProps) {
     [lightboxEntry]
   );
   const numImages = props.images.length > 3 ? 3 : props.images.length;
-
-  // Reviews for the building
-  const reviews = [
-    {
-      id: 1,
-      createdAt: "2021-01-01",
-      updatedAt: "2021-01-01",
-      title: "Great place to live",
-      body: "I lived here for 2 years and it was great. The rooms are spacious and the bathrooms are clean. The laundry is on the 3rd floor and the machines are new. The location is great and the building is quiet. The only downside is that the building is a bit old and the elevators are slow.",
-      author: "Andrew",
-      authorId: "1",
-      location: "Grad Center A",
-      locationId: "1",
-      media: [],
-      upvotes: [],
-      downvotes: [],
-      overallRating: 8,
-      amenitiesRating: 8,
-      comfortRating: 8,
-      locationRating: 8,
-    },
-    {
-      id: 2,
-      createdAt: "2021-01-01",
-      updatedAt: "2021-01-01",
-      title: "Great place to live",
-      body: "Terrible Place. .",
-      author: "James",
-      authorId: "2",
-      location: "Grad Center A",
-      locationId: "1",
-      media: [],
-      upvotes: [],
-      downvotes: [],
-      overallRating: 5,
-      amenitiesRating: 6,
-      comfortRating: 7,
-      locationRating: 2,
-    },
-    {
-      id: 3,
-      createdAt: "2021-01-01",
-      updatedAt: "2021-01-01",
-      title: "Great place to live",
-      body: "Terrible Place. .",
-      author: "James",
-      authorId: "2",
-      location: "Grad Center A",
-      locationId: "1",
-      media: [],
-      upvotes: [],
-      downvotes: [],
-      overallRating: 5,
-      amenitiesRating: 6,
-      comfortRating: 7,
-      locationRating: 2,
-    },
-    {
-      id: 4,
-      createdAt: "2021-01-01",
-      updatedAt: "2021-01-01",
-      title: "Great place to live",
-      body: "Terrible Place. .",
-      author: "James",
-      authorId: "2",
-      location: "Grad Center A",
-      locationId: "1",
-      media: [],
-      upvotes: [],
-      downvotes: [],
-      overallRating: 5,
-      amenitiesRating: 6,
-      comfortRating: 7,
-      locationRating: 2,
-    },
-    {
-      id: 5,
-      createdAt: "2021-01-01",
-      updatedAt: "2021-01-01",
-      title: "Great place to live",
-      body: "Terrible Place. .",
-      author: "James",
-      authorId: "2",
-      location: "Grad Center A",
-      locationId: "1",
-      media: [],
-      upvotes: [],
-      downvotes: [],
-      overallRating: 5,
-      amenitiesRating: 6,
-      comfortRating: 7,
-      locationRating: 2,
-    },
-  ];
 
   return (
     <div className={styles.buildingContainer}>
@@ -257,7 +178,9 @@ export default function Dorm(props: DormProps) {
         </div>
         <div className={styles.gridColTwo}>
           <div className={styles.ReviewHeader}>
-            <h1 className={styles.sectionTitle}>Reviews ({reviews.length})</h1>
+            <h1 className={styles.sectionTitle}>
+              Reviews ({props.reviews.length})
+            </h1>
             <div
               onClick={() => {
                 sessionData ? setShowReviewModal(true) : void signIn();
@@ -271,13 +194,13 @@ export default function Dorm(props: DormProps) {
           <div className={styles.scrollable}>
             {
               // If there are no reviews, display an empty state
-              allReviews.length === 0 ? (
+              props.reviews.length === 0 ? (
                 <div className={styles.reviewContainerEmptyState}>
                   There are no reviews for this building yet. Leave the first
                   review!
                 </div>
               ) : (
-                allReviews.map((review) => (
+                props.reviews.map((review) => (
                   <DormReview {...review} key={review.id} />
                 ))
               )
