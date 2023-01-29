@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./DormReview.module.css";
+import { BiUpvote, BiDownvote } from "react-icons/bi";
 
 interface BuildingReviewProps {
   id: number;
@@ -23,15 +24,24 @@ interface BuildingReviewProps {
 export default function BuildingReview(props: BuildingReviewProps) {
   return (
     <div className={styles.BuildingReview}>
-      <div className={styles.reviewHeader}>
-        <strong>
-          {props.author} - {props.overallRating} / 5
-        </strong>
+      <div className={styles.UpvoteDownvote}>
+        <div className={styles.Pair}>
+          <p>{props.upvotes.length}</p>
+          <BiUpvote className={styles.Upvote} />
+        </div>
+        <div className={styles.Pair}>
+          <p>{props.downvotes.length}</p>
+          <BiDownvote className={styles.Downvote} />
+        </div>
       </div>
-      <div className="reviewContent">{props.body}</div>
-      {/* <div className="reviewFooter">
-        <p>Last Modified: {props.updatedAt}</p>
-      </div> */}
+      <div className={styles.reviewSection}>
+        <div className={styles.reviewHeader}>
+          <strong>
+            {props.author} - {props.overallRating / 2} / 5
+          </strong>
+        </div>
+        <div className="reviewContent">{props.body}</div>
+      </div>
     </div>
   );
 }

@@ -1,14 +1,62 @@
 .BuildingReview {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  /* justify-content: center; */
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  padding: 2rem 1rem 2rem 1rem;
+  padding: 1.5rem 1.5rem 1.5rem 0.5rem;
   text-align: left;
+}
+
+.reviewSection {
+  width: 90%;
 }
 
 .BuildingReview + .BuildingReview {
   border-top: 2px solid black;
+}
+
+.UpvoteDownvote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  gap: 0.5rem;
+}
+
+.Pair {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 1.3rem;
+  gap: 0.5rem;
+}
+
+.Pair > p {
+  margin: 0;
+}
+
+.Upvote:hover {
+  cursor: pointer;
+  color: #d24e4e;
+}
+
+.Downvote:hover {
+  cursor: pointer;
+  color: #4e50d2;
+}
+
+@media (max-width: 768px) {
+  .reviewSection {
+    width: 70%;
+  }
+
+  .UpvoteDownvote {
+    width: 30%;
+    margin-bottom: 1rem;
+  }
 }
