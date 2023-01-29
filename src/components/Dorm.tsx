@@ -6,11 +6,11 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import DormReview from "./DormReview";
-import BuildingReview from "./DormReview";
 import { AiFillHome } from "react-icons/ai";
 import { BiPlusMedical } from "react-icons/bi";
 import Modal from "./Modal";
-import Review from "./Review";
+import Review from "./buttons/Review";
+import AddImage from "./buttons/AddImage";
 
 interface DormProps {
   name: string;
@@ -25,7 +25,8 @@ interface DormProps {
 export default function Dorm(props: DormProps) {
   // State for reviews
   const [buildingReviews, setBuildingReviews] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showAddImageModal, setShowAddImageModal] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   // Lightbox
   const [showLightbox, setShowLightbox] = useState(false);
@@ -156,18 +157,36 @@ export default function Dorm(props: DormProps) {
       />
 
       {/* Content */}
-      <Modal show={showModal}>
+      <Modal show={showAddImageModal}>
+        <AddImage
+          closeModal={() => {
+            setShowAddImageModal(false);
+          }}
+        />
+      </Modal>
+      <Modal show={showReviewModal}>
         <Review
           location={props.name}
           closeModal={() => {
-            setShowModal(false);
+            setShowReviewModal(false);
           }}
         />
       </Modal>
       <div className={styles.buildingContentContainer}>
         <div className={styles.gridColOne}>
           <div className={styles.itemOne}>
-            <h1 className={styles.sectionTitle}>Summary</h1>
+            <div className={styles.summaryHeader}>
+              <h1 className={styles.sectionTitle}>Summary</h1>
+              <div
+                onClick={() => {
+                  setShowAddImageModal(true);
+                }}
+                className={styles.addImage}
+              >
+                Add Image
+                <BiPlusMedical />
+              </div>
+            </div>
             {props.summary}
           </div>
           <div className={styles.itemTwo}>
@@ -203,26 +222,6 @@ export default function Dorm(props: DormProps) {
             <div className={styles.sectionDivider} />
             <h1 className={styles.sectionTitle}>Location</h1>
             {props.location}
-            {/* <Map
-            {...viewState}
-            onMove={(evt) => setViewState(evt.viewState)}
-            style={{ width: "100%", height: "40vh" }}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
-            mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          >
-            {marker.latitude === -99999999 && marker.longitude === -99999999 ? (
-              <div />
-            ) : (
-              <Marker
-                longitude={marker.longitude}
-                latitude={marker?.latitude}
-                anchor="bottom"
-                style={{ width: 20, height: 20 }}
-              >
-                <img src="http://shorturl.at/cgjnM" />
-              </Marker>
-            )}
-          </Map> */}
           </div>
         </div>
         <div className={styles.gridColTwo}>
@@ -230,7 +229,7 @@ export default function Dorm(props: DormProps) {
             <h1 className={styles.sectionTitle}>Reviews ({reviews.length})</h1>
             <div
               onClick={() => {
-                setShowModal(true);
+                setShowReviewModal(true);
               }}
               className={styles.addReview}
             >
@@ -238,10 +237,6 @@ export default function Dorm(props: DormProps) {
               <BiPlusMedical />
             </div>
           </div>
-          {/* <WriteReplyModal
-          isOpen={writeReplyModal}
-          onClose={() => setWriteReplyModal(false)}
-        /> */}
           <div className={styles.scrollable}>
             {
               // If there are no reviews, display an empty state

@@ -40,6 +40,31 @@
   cursor: zoom-in;
 }
 
+.summaryHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 1rem; */
+}
+
+.addImage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #562929;
+  padding: 0.4rem 1.3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  border-radius: 9px;
+  text-align: left;
+  margin: 0;
+  cursor: pointer;
+}
+
 .buildingHeader {
   font-size: 2.5rem;
   font-weight: 700;
@@ -52,6 +77,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
 }
 
 .gridColOne {
@@ -143,7 +169,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .addReview {
@@ -153,7 +179,7 @@
   justify-content: center;
   gap: 0.5rem;
   background-color: #562929;
-  padding: 0.8rem 1.3rem;
+  padding: 0.4rem 1.3rem;
   font-size: 1.1rem;
   font-weight: 700;
   color: rgb(255, 255, 255);
