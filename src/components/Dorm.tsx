@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import styles from "./Dorm.module.css";
 
@@ -13,6 +13,7 @@ import Review from "./buttons/Review";
 import AddImage from "./buttons/AddImage";
 import { useSession, signIn } from "next-auth/react";
 import { api } from "../utils/api";
+import ReactStars from "react-rating-stars-component";
 
 interface DormProps {
   id: string;
@@ -67,6 +68,22 @@ export default function Dorm(props: DormProps) {
   );
   const numImages = props.images.length > 3 ? 3 : props.images.length;
 
+  // Overall dorm rating
+  const [overallRating, setOverallRating] = useState(0);
+  useEffect(() => {
+    let total = 0;
+    let count = 0;
+    props.reviews.forEach((review) => {
+      if (review.overallRating) {
+        total += review.overallRating;
+        count++;
+      }
+    });
+    setOverallRating(total / count);
+  }, [props.reviews]);
+
+  // alert(overallRating);
+
   return (
     <div className={styles.buildingContainer}>
       <div className={styles.buildingHeader}>
@@ -76,7 +93,9 @@ export default function Dorm(props: DormProps) {
             window.location.href = "/";
           }}
         />
-        <h1 className={styles.buildingHeader}>{props.name}</h1>
+        <h1 className={styles.buildingHeader}>
+          {props.name} ({overallRating} / 10)
+        </h1>
       </div>
 
       <div className={styles.buildingSlideshow}>

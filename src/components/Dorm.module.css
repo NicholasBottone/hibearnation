@@ -188,6 +188,13 @@
   }
 }
 
+@media (max-width: 540px) {
+  .buildingHeader {
+    font-size: 1.2rem;
+    gap: 1rem;
+  }
+}
+
 .ReviewHeader {
   display: flex;
   flex-direction: row;
