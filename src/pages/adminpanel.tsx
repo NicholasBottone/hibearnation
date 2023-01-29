@@ -6,13 +6,48 @@ import { signIn, signOut, useSession } from "next-auth/react";
 const AdminPanel: NextPage = () => {
   const [areaName, setAreaName] = useState("");
 
+  const [locationName, setLocationName] = useState("");
+  const [locationAddress, setLocationAddress] = useState("");
+  const [locationCoordinates, setLocationCoordinates] = useState("");
+  const [locationAreaname, setLocationAreaname] = useState("");
+  const [locationSummary, setLocationSummary] = useState("");
+  const [locationSubs, setLocationSubs] = useState<string[]>([]);
+  const [locationFloorplans, setLocationFloorplans] = useState<string[]>([]);
+
   const createAreasMutation = api.admin.createAreas.useMutation();
+  const createLocationMutation = api.admin.createLocation.useMutation();
+
   const { data: sessionData } = useSession();
 
   const addArea = () => {
     console.log("Adding area: ", areaName);
     //alert("Adding area: " + areaName);
     createAreasMutation.mutate({ name: areaName });
+  };
+
+  const addLocation = () => {
+    console.log("Adding location: ", locationName + "...");
+    console.log(
+      "Address: ",
+      locationAddress,
+      " | Coordinates: ",
+      locationCoordinates,
+      " | Area Name: ",
+      locationAreaname,
+      " | Sublocations: ",
+      locationSubs,
+      " | Floorplans: ",
+      locationFloorplans
+    );
+    createLocationMutation.mutate({
+      name: locationName,
+      summary: locationSummary,
+      address: locationAddress,
+      coordinates: locationCoordinates,
+      areaName: locationAreaname,
+      sublocations: locationSubs,
+      floorplans: locationFloorplans,
+    });
   };
 
   return (
@@ -66,10 +101,105 @@ const AdminPanel: NextPage = () => {
           <button onClick={addArea}>Add Area</button>
         </div>
 
-        <div className="add-location">
+        <div
+          className="add-location"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <h2 style={{ textAlign: "center" }}>Add Location:</h2>
           <label htmlFor="Location Name">Location Name:</label>
-          <input id="Location Name" type="text" />
+          <input
+            id="Location Name"
+            type="text"
+            value={locationName}
+            onChange={(e) => setLocationName(e.target.value)}
+          />
+
+          <label htmlFor="Location Address">Location Address:</label>
+          <input
+            id="Location Address"
+            type="text"
+            value={locationAddress}
+            onChange={(e) => setLocationAddress(e.target.value)}
+          />
+
+          <label htmlFor="Location Coordinates">Location Coordinates:</label>
+          <input
+            id="Location Coordinates"
+            type="text"
+            value={locationCoordinates}
+            onChange={(e) => setLocationCoordinates(e.target.value)}
+          />
+
+          <label htmlFor="Location Area Name">Location Area Name:</label>
+          <input
+            id="Location Area Name"
+            type="text"
+            value={locationAreaname}
+            onChange={(e) => setLocationAreaname(e.target.value)}
+          />
+
+          <label htmlFor="Location Sublocations (Empty or comma-separated list)">
+            Location Sublocations:
+          </label>
+          <input
+            id="Location Sublocations"
+            type="text"
+            value={locationSubs}
+            onChange={(e) => {
+              //Separate the string by commas
+              const sublocations = e.target.value.split(",");
+              //Remove any empty strings
+              const filteredSublocations = sublocations.filter(
+                (sublocation) => sublocation !== ""
+              );
+              //if there are no locations, set to empty array
+              if (filteredSublocations.length === 0) {
+                setLocationSubs([]);
+              }
+              //otherwise, set to the filtered array
+              else {
+                setLocationSubs(filteredSublocations);
+              }
+            }}
+          />
+
+          <label htmlFor="Location Floorplans">Location Floorplans:</label>
+          <input
+            id="Location Floorplans"
+            type="text"
+            value={locationFloorplans}
+            onChange={(e) => {
+              //Separate the string by commas
+              const floorplans = e.target.value.split(",");
+              //Remove any empty strings
+              const filteredFloorplans = floorplans.filter(
+                (floorplan) => floorplan !== ""
+              );
+              //if there are no locations, set to empty array
+              if (filteredFloorplans.length === 0) {
+                setLocationFloorplans([]);
+              }
+              //otherwise, set to the filtered array
+              else {
+                setLocationFloorplans(filteredFloorplans);
+              }
+            }}
+          />
+
+          <label htmlFor="Location Summary">Location Summary:</label>
+          <input
+            id="Location Summary"
+            type="text"
+            value={locationSummary}
+            onChange={(e) => setLocationSummary(e.target.value)}
+          />
+
+          <button onClick={addLocation}>Add Location</button>
         </div>
       </div>
     </>
