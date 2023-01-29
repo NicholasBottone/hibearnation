@@ -145,6 +145,15 @@ export default function Review(props: ReviewProps) {
         <p
           className={styles.Button}
           onClick={() => {
+            if (
+              overallRating === 0 ||
+              amenitiesRating === 0 ||
+              locationRating === 0 ||
+              comfortRating === 0
+            ) {
+              alert("Please rate all categories!");
+              return;
+            }
             if (totalReview) {
               createReviewMutation.mutate(totalReview);
             }
