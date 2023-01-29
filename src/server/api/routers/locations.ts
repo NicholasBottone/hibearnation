@@ -27,6 +27,7 @@ export const locationsRouter = createTRPCRouter({
         },
         include: {
           FloorPlan: true,
+          Review: true,
         },
       });
     }),
