@@ -51,11 +51,14 @@ const Home: NextPage = () => {
         <Searchbar search={search} setSearch={setSearch} />
         <div className={styles.ascii}>
           {sessionData ? (
-            <img
-              src={sessionData?.user?.image ?? ""}
-              alt="Profile Picture"
-              className={styles.ProfilePicture}
-            />
+            <>
+              <img
+                src={sessionData?.user?.image ?? ""}
+                alt="Profile Picture"
+                className={styles.ProfilePicture}
+                onClick={() => void signOut()}
+              />
+            </>
           ) : (
             <div className={styles.SignIn} onClick={() => void signIn()}>
               Sign In

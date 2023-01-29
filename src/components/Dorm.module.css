@@ -132,13 +132,6 @@
   margin-bottom: 1rem;
 }
 
-@media only screen and (min-width: 900px) {
-  .scrollable {
-    max-height: 60vh;
-    min-height: 400px;
-  }
-}
-
 .sectionTitle {
   font-weight: 700;
   font-style: bold;
@@ -184,8 +177,8 @@
 
 @media (max-width: 540px) {
   .buildingHeader {
-    font-size: 1.2rem;
-    gap: 1rem;
+    font-size: 1.4rem;
+    gap: 0.8rem;
   }
 }
 
