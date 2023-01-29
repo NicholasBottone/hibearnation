@@ -128,13 +128,6 @@ const AdminPanel: NextPage = () => {
           }}
         >
           <h2 style={{ textAlign: "center" }}>Add Location:</h2>
-          <label htmlFor="Location Name">Location Name:</label>
-          <input
-            id="Location Name"
-            type="text"
-            value={locationName}
-            onChange={(e) => setLocationName(e.target.value)}
-          />
 
           <button
             onClick={() => {
@@ -145,6 +138,14 @@ const AdminPanel: NextPage = () => {
           >
             Clear Fields
           </button>
+
+          <label htmlFor="Location Name">Location Name:</label>
+          <input
+            id="Location Name"
+            type="text"
+            value={locationName}
+            onChange={(e) => setLocationName(e.target.value)}
+          />
 
           <label htmlFor="Location Address">Location Address:</label>
           <input
@@ -178,14 +179,15 @@ const AdminPanel: NextPage = () => {
             type="text"
             value={locationSubs}
             onChange={(e) => {
+              const originalString = e.target.value;
               //Separate the string by commas
-              const sublocations = e.target.value.split(",");
+              const sublocations = originalString.split(",");
               //Remove any empty strings
               const filteredSublocations = sublocations.filter(
                 (sublocation) => sublocation !== ""
               );
               //if there are no locations, set to empty array
-              if (filteredSublocations.length === 0) {
+              if (!originalString) {
                 setLocationSubs([]);
               }
               //otherwise, set to the filtered array
@@ -201,14 +203,15 @@ const AdminPanel: NextPage = () => {
             type="text"
             value={locationFloorplans}
             onChange={(e) => {
+              const originalString = e.target.value;
               //Separate the string by commas
-              const floorplans = e.target.value.split(",");
+              const floorplans = originalString.split(",");
               //Remove any empty strings
               const filteredFloorplans = floorplans.filter(
                 (floorplan) => floorplan !== ""
               );
               //if there are no locations, set to empty array
-              if (filteredFloorplans.length === 0) {
+              if (!originalString) {
                 setLocationFloorplans([]);
               }
               //otherwise, set to the filtered array
