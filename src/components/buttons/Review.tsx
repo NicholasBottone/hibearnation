@@ -39,22 +39,6 @@ export default function Review(props: ReviewProps) {
     setComfortRating(newRating);
   };
 
-  // createdAt: "2021-01-01",
-  // updatedAt: "2021-01-01",
-  // title: "Great place to live",
-  // body: "I lived here for 2 years and it was great. The rooms are spacious and the bathrooms are clean. The laundry is on the 3rd floor and the machines are new. The location is great and the building is quiet. The only downside is that the building is a bit old and the elevators are slow.",
-  // author: "Andrew",
-  // authorId: "1",
-  // location: "Grad Center A",
-  // locationId: "1",
-  // media: [],
-  // upvotes: [],
-  // downvotes: [],
-  // overallRating: 8,
-  // amenitiesRating: 8,
-  // comfortRating: 8,
-  // locationRating: 8,
-
   const totalReview = sessionData
     ? {
         createdAt: new Date().toISOString(),
@@ -68,9 +52,7 @@ export default function Review(props: ReviewProps) {
         media: undefined,
         upvotes: undefined,
         downvotes: undefined,
-        overallRating: Math.floor(
-          ((amenitiesRating + locationRating + comfortRating) / 3) * 2
-        ),
+        overallRating: overallRating * 2,
         amenitiesRating: amenitiesRating * 2,
         comfortRating: comfortRating * 2,
         locationRating: locationRating * 2,
