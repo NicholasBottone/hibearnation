@@ -148,6 +148,15 @@ export default function Review(props: ReviewProps) {
             if (totalReview) {
               createReviewMutation.mutate(totalReview);
             }
+            overallRate(0);
+            setOverallRating(0);
+            amenitiesRate(0);
+            setAmenitiesRating(0);
+            locationRate(0);
+            setLocationRating(0);
+            comfortRate(0);
+            setComfortRating(0);
+            setReview("");
             props.closeModal();
           }}
           style={{

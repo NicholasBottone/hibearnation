@@ -116,16 +116,6 @@ export default function AddImage(props: AddImageProps) {
         </p>
         <p
           className={styles.Button}
-          onClick={() => {
-            if (imageURL) {
-              console.log(imageURL);
-              postMediaMutation.mutate({
-                media: imageURL,
-                locationId: props.locationId,
-              });
-            }
-            props.closeModal();
-          }}
           style={{
             backgroundColor: "#60ae3c",
             color: "white",
