@@ -139,7 +139,7 @@ export default function Dorm(props: DormProps) {
       </div>
 
       {props.images.length > 0 ? (
-        <div className={styles.buildingSlideshow}>
+        <div className={styles.buildingSlideshow} title="Click to view more!">
           {props.images.slice(0, numImages).map((image, idx) => (
             <img
               src={image}

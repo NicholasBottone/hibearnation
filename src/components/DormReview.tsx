@@ -40,14 +40,6 @@ export default function BuildingReview(props: BuildingReviewProps) {
   const downvoteMutation = api.reviews.downvoteReview.useMutation();
   const undoDownvoteMutation = api.reviews.undoDownvoteReview.useMutation();
 
-  // useEffect(() => {
-  //   setUpvoted(props.upvotes?.map((user) => user.id).includes(userId || "a"));
-  //   setDownvote(
-  //     props.downvotes?.map((user) => user.id).includes(userId || "a")
-  //   );
-  //   setCount(upvoteCount - downvoteCount);
-  // }, [props.upvotes, props.downvotes, downvoteCount, upvoteCount, userId]);
-
   const upvoteAction = () => {
     if (!sessionData) {
       void signIn();
