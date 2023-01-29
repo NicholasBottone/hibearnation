@@ -18,6 +18,7 @@ export const locationsRouter = createTRPCRouter({
   }),
 
   // Returns full data of a single location
+  // when returning reviews, sort by number of upvotes
   getOne: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(({ ctx, input }) => {
@@ -29,6 +30,11 @@ export const locationsRouter = createTRPCRouter({
           FloorPlan: true,
           Media: true,
           Review: {
+            orderBy: {
+              upvotes: {
+                _count: "desc",
+              },
+            },
             include: {
               upvotes: true,
               downvotes: true,
