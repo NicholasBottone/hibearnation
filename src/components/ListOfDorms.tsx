@@ -33,6 +33,15 @@ export default function ListOfDorms(props: ListOfDormsProps) {
     return os;
   };
   const os = getOS();
+  const sortedDorms = props.dorms.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
 
   return (
     <div
@@ -43,7 +52,7 @@ export default function ListOfDorms(props: ListOfDormsProps) {
           : styles.ListOfDorms
       }
     >
-      {props.dorms.map(
+      {sortedDorms.map(
         (dorm) =>
           dorm.name.toLowerCase().includes(props.curSearch.toLowerCase()) && (
             <div
@@ -57,7 +66,7 @@ export default function ListOfDorms(props: ListOfDormsProps) {
             </div>
           )
       )}
-      {props.dorms.every(
+      {sortedDorms.every(
         (dorm) =>
           !dorm.name.toLowerCase().includes(props.curSearch.toLowerCase())
       ) && (

@@ -17,6 +17,7 @@ import { api } from "../utils/api";
 // @ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { User } from "@prisma/client";
+import Link from "next/link";
 
 interface DormProps {
   id: string;
@@ -125,12 +126,9 @@ export default function Dorm(props: DormProps) {
   return (
     <div className={styles.buildingContainer}>
       <div className={styles.buildingHeader}>
-        <AiFillHome
-          className={styles.logo}
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        />
+        <Link href={`/`} className={styles.logo}>
+          <AiFillHome className={styles.logo} />
+        </Link>
 
         <h1 className={styles.buildingHeader}>
           {props.name}{" "}
