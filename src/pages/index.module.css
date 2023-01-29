@@ -115,7 +115,34 @@
 }
 
 @media screen and (max-width: 768px) {
-  .ascii {
+  .BearAsciiArt {
+    display: none;
+  }
+  .HouseAsciiArt {
+    display: none;
+  }
+  .SciliAsciiArt {
+    display: none;
+  }
+  .ShowerAsciiArt {
+    display: none;
+  }
+  .LightbulbAsciiArt {
+    display: none;
+  }
+  .ToiletAsciiArt {
+    display: none;
+  }
+  .ChairAsciiArt {
+    display: none;
+  }
+  .BedAsciiArt {
+    display: none;
+  }
+  .SofaAsciiArt {
+    display: none;
+  }
+  .SkateboardAsciiArt {
     display: none;
   }
 }

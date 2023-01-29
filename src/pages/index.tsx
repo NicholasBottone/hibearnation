@@ -6,7 +6,7 @@ import { api } from "../utils/api";
 import Searchbar from "../components/Searchbar";
 import ListOfDorms from "../components/ListOfDorms";
 import Modal from "../components/Modal";
-import Review from "../components/Review";
+import Review from "../components/buttons/Review";
 import {
   bearAsciiArt,
   houseAsciiArt,
