@@ -76,20 +76,15 @@
 
 .buildingContentContainer {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex: 1, 1, 0;
-  height: fit-content;
-  padding-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
 }
 
 .gridColOne {
   text-align: left;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 400px;
+  display: grid;
+  grid-auto-rows: minmax(80px, auto);
 }
 
 .itemOne {
@@ -124,9 +119,6 @@
   padding-left: 20px;
   text-align: center;
   overflow: hidden;
-  align-self: stretch;
-  flex: 1;
-  min-width: 400px;
 }
 
 .scrollable {
@@ -134,8 +126,8 @@
   background-color: white;
   border: 2px solid black;
   border-radius: 10px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  max-height: 37vh;
+  overflow: scroll;
   margin-bottom: 1rem;
 }
 
