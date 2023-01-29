@@ -25,6 +25,9 @@ export const locationsRouter = createTRPCRouter({
         where: {
           id: input.id,
         },
+        include: {
+          FloorPlan: true,
+        },
       });
     }),
 
