@@ -94,7 +94,7 @@ export default function Dorm(props: DormProps) {
           }}
         />
         <h1 className={styles.buildingHeader}>
-          {props.name} ({overallRating} / 10)
+          {props.name} ({overallRating ? overallRating : "NA"} / 10)
         </h1>
       </div>
 
