@@ -6,7 +6,6 @@ import { api } from "../../utils/api";
 import { env } from "../../env/client.mjs";
 
 import Dorm from "../../components/Dorm";
-import Map, { Marker } from "react-map-gl";
 
 // export default function building() {
 const MyPage: NextPage = () => {

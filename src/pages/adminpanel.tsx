@@ -395,7 +395,7 @@ const AdminPanel: NextPage = () => {
           />
 
           <button onClick={addReview}>Add Review</button>
-          <p>{createReviewMutation.data}</p>
+          <p>{String(createReviewMutation.data)}</p>
         </div>
       </div>
     </>

@@ -11,8 +11,9 @@ export default function AddImage(props: AddImageProps) {
       <h1 className={styles.Title}>Add Image</h1>
       <p>
         Please upload an image of the location you are reviewing. This image
-        will be displayed on the location's page and will be used to help others
-        view the location. Please make sure the image is a .jpg or .png file.
+        will be displayed on the location&apos;s page and will be used to help
+        others view the location. Please make sure the image is a .jpg or .png
+        file.
       </p>
       <input type="file" className={styles.Button} />
       <div className={styles.ButtonContainer}>
