@@ -64,7 +64,7 @@ export default function Review(props: ReviewProps) {
         upvotes: undefined,
         downvotes: undefined,
         overallRating:
-          (amenitiesRating * 2 + locationRating * 2 + comfortRating * 2) / 3,
+          ((amenitiesRating + locationRating + comfortRating) / 3) * 2,
         amenitiesRating: amenitiesRating * 2,
         comfortRating: comfortRating * 2,
         locationRating: locationRating * 2,

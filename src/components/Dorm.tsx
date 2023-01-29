@@ -12,6 +12,7 @@ import Modal from "./Modal";
 import Review from "./buttons/Review";
 import AddImage from "./buttons/AddImage";
 import { useSession, signIn } from "next-auth/react";
+import { api } from "../utils/api";
 
 interface DormProps {
   id: string;
@@ -35,6 +36,9 @@ export default function Dorm(props: DormProps) {
   const [showAddImageModal, setShowAddImageModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const { data: sessionData } = useSession();
+  const { data: allReviews } = api.reviews.getByLocation.useQuery({
+    id: props.id,
+  });
 
   // Lightbox
   const [showLightbox, setShowLightbox] = useState(false);
@@ -231,7 +235,7 @@ export default function Dorm(props: DormProps) {
                 ))}
             <br />
             Floorplan:{" "}
-            {props.floorplans.length === 0
+            {/* {props.floorplans.length === 0
               ? "N/A"
               : props.floorplans.map((floorplan, idx) => (
                   <a
@@ -243,7 +247,7 @@ export default function Dorm(props: DormProps) {
                   >
                     {floorplan.name}{" "}
                   </a>
-                ))}
+                ))} */}
           </div>
           <div className={styles.itemThree}>
             <div className={styles.sectionDivider} />
@@ -267,13 +271,13 @@ export default function Dorm(props: DormProps) {
           <div className={styles.scrollable}>
             {
               // If there are no reviews, display an empty state
-              reviews.length === 0 ? (
+              allReviews.length === 0 ? (
                 <div className={styles.reviewContainerEmptyState}>
                   There are no reviews for this building yet. Leave the first
                   review!
                 </div>
               ) : (
-                reviews.map((review) => (
+                allReviews.map((review) => (
                   <DormReview {...review} key={review.id} />
                 ))
               )
