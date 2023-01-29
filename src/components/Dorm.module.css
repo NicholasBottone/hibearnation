@@ -163,6 +163,13 @@
   .gridColTwo {
     padding-left: 0;
   }
+  .itemThree {
+    grid-row: 3;
+  }
+
+  .ReviewHeader {
+    margin-bottom: 1rem;
+  }
 }
 
 .ReviewHeader {
