@@ -163,6 +163,7 @@
 /* Reviews */
 .reviewContainerEmptyState {
   text-align: left;
+  padding: 1rem;
 }
 
 /* Media queries */

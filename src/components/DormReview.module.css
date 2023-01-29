@@ -13,6 +13,14 @@
   width: 90%;
 }
 
+.reviewHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
 .BuildingReview + .BuildingReview {
   border-top: 2px solid black;
 }
@@ -26,18 +34,12 @@
   gap: 0.5rem;
 }
 
-.Pair {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  font-size: 1.3rem;
-  gap: 0.5rem;
+.Upvote {
+  font-size: 1.5rem;
 }
 
-.Pair > p {
-  margin: 0;
+.Downvote {
+  font-size: 1.5rem;
 }
 
 .Upvote:hover {
@@ -50,12 +52,30 @@
   color: #4e50d2;
 }
 
+.UpvoteDownvoteAndNumber {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  gap: 1rem;
+}
+
 @media (max-width: 768px) {
   .reviewSection {
-    width: 70%;
+    width: 85%;
   }
 
   .UpvoteDownvote {
     width: 30%;
+  }
+
+  .reviewHeader {
+    font-size: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .emoji {
+    display: none;
   }
 }
