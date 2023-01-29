@@ -9,6 +9,7 @@ import BuildingReview from "./BuildingReview";
 
 interface BuildingProps {
   name: string;
+  areaName: string;
   summary: string;
   info: {
     laundryFloor: string;
@@ -128,13 +129,13 @@ export default function Building2(props: BuildingProps) {
           <div className={styles.itemTwo}>
             <div className={styles.sectionDivider} />
             <h1 className={styles.sectionTitle}>Info</h1>
-            Laundry Floor: {props.info.laundryFloor}
-            <br />
+            Sublocation: fill
+            {/* <br />
             Laundry Room: {props.info.laundryRoom}
             <br />
             Capacity: {props.info.capacity}
             <br />
-            Class Year: {props.info.classYear}
+            Class Year: {props.info.classYear} */}
           </div>
           <div className={styles.itemThree}>
             <div className={styles.sectionDivider} />
