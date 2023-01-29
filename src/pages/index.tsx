@@ -7,6 +7,7 @@ import Searchbar from "../components/Searchbar";
 import ListOfDorms from "../components/ListOfDorms";
 import Modal from "../components/Modal";
 import Review from "../components/buttons/Review";
+import { signIn, useSession, signOut } from "next-auth/react";
 import {
   bearAsciiArt,
   houseAsciiArt,
@@ -19,11 +20,12 @@ import {
   toiletAsciiArt,
   bedAsciiArt,
 } from "../components/ascii";
+import Image from "next/image";
 
 const Home: NextPage = () => {
-  const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
   const { data } = api.locations.getNames.useQuery();
+  const { data: sessionData } = useSession();
   return (
     <>
       <Head>
@@ -37,15 +39,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Modal show={showModal}>
-          <Review
-            closeModal={() => setShowModal(false)}
-            location="Grad Center Hall A"
-          />
-        </Modal>
         <p
           className={styles.title}
-          onClick={() => setShowModal(true)}
           style={{
             fontSize: "2rem",
             margin: 0,
@@ -54,6 +49,19 @@ const Home: NextPage = () => {
           hi<b style={{ color: "#822b2e" }}>bear</b>nation
         </p>
         <Searchbar search={search} setSearch={setSearch} />
+        <div className={styles.ascii}>
+          {sessionData ? (
+            <img
+              src={sessionData?.user?.image ?? ""}
+              alt="Profile Picture"
+              className={styles.ProfilePicture}
+            />
+          ) : (
+            <div className={styles.SignIn} onClick={() => void signIn()}>
+              Sign In
+            </div>
+          )}
+        </div>
 
         {/* ternary operator for if data is undefined */}
         {data ? (
@@ -96,6 +104,13 @@ const Home: NextPage = () => {
           <div className={styles.SkateboardAsciiArt}>
             <pre>{skateboardAsciiArt}</pre>
           </div>
+        </div>
+        <div className={styles.textSignIn}>
+          {sessionData ? (
+            <div onClick={() => void signOut()}>Sign Out</div>
+          ) : (
+            <div onClick={() => void signIn()}>Sign In</div>
+          )}
         </div>
       </main>
     </>

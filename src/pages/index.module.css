@@ -146,3 +146,49 @@
     display: none;
   }
 }
+
+.SignIn {
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #562929;
+  color: white;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.ProfilePicture {
+  border-radius: 10px;
+  color: white;
+  width: 5rem;
+  border: 2px solid black;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.textSignIn {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100vw;
+    background-color: #eac9c1;
+  }
+
+  .title {
+    padding-top: 1.2rem;
+  }
+
+  .textSignIn {
+    display: flex;
+    margin-top: 0.5rem;
+    text-decoration: underline;
+  }
+}
