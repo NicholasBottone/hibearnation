@@ -74,6 +74,15 @@
   grid-row: 3/5;
 }
 
+.link {
+  color: rgb(164, 45, 37);
+}
+
+.link:hover {
+  cursor: pointer;
+  color: rgb(61, 12, 9);
+}
+
 .itemFour {
   grid-row: 5;
 }

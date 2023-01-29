@@ -1,27 +1,23 @@
 import React, { useMemo, useState } from "react";
 
-import styles from "./Building.module.css";
+import styles from "./Dorm.module.css";
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import BuildingReview from "./DormReview";
+import DormReview from "./DormReview";
 
-interface BuildingProps {
+interface DormProps {
   name: string;
   areaName: string;
   summary: string;
-  info: {
-    laundryFloor: string;
-    laundryRoom: string;
-    capacity: string;
-    classYear: string[];
-  };
   location: string;
+  sublocations: string[];
+  floorplans: string[];
   images: string[];
 }
 
-export default function Building2(props: BuildingProps) {
+export default function Dorm(props: DormProps) {
   // State for reviews
   const [buildingReviews, setBuildingReviews] = useState([]);
 
@@ -129,13 +125,31 @@ export default function Building2(props: BuildingProps) {
           <div className={styles.itemTwo}>
             <div className={styles.sectionDivider} />
             <h1 className={styles.sectionTitle}>Info</h1>
-            Sublocation: fill
-            {/* <br />
-            Laundry Room: {props.info.laundryRoom}
+            Area Name: {props.areaName}
             <br />
-            Capacity: {props.info.capacity}
+            Sublocation:{" "}
+            {props.sublocations.length === 0
+              ? "N/A"
+              : props.sublocations.map((sublocation, idx) => (
+                  <a className={styles.listItem} key={idx}>
+                    {sublocation}{" "}
+                  </a>
+                ))}
             <br />
-            Class Year: {props.info.classYear} */}
+            Floorplan:{" "}
+            {props.floorplans.length === 0
+              ? "N/A"
+              : props.floorplans.map((floorplan, idx) => (
+                  <a
+                    className={styles.link}
+                    key={idx}
+                    href={floorplan}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {idx}{" "}
+                  </a>
+                ))}
           </div>
           <div className={styles.itemThree}>
             <div className={styles.sectionDivider} />
@@ -179,7 +193,7 @@ export default function Building2(props: BuildingProps) {
                 </div>
               ) : (
                 reviews.map((review) => (
-                  <BuildingReview {...review} key={review.id} />
+                  <DormReview {...review} key={review.id} />
                 ))
               )
             }

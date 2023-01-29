@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { api } from "../../utils/api";
 import { env } from "../../env/client.mjs";
 
-import Building from "../../components/Building";
+import Dorm from "../../components/Dorm";
 import Map, { Marker } from "react-map-gl";
 
 // export default function building() {
@@ -37,11 +37,13 @@ const MyPage: NextPage = () => {
       {!building.data ? (
         <div>Loading...</div>
       ) : (
-        <Building
+        <Dorm
           name={building.data.name}
           areaName={building.data.areaName}
           summary={building.data.summary}
           location={building.data.address}
+          sublocations={building.data.sublocations}
+          floorplans={building.data.floorplans}
           images={[
             "https://reslife.brown.edu/sites/default/files/styles/classic_xsml/public/2020-04/GradCtrB_2.jpg?h=7e0400c3&itok=0Tgxt1fl",
             "https://upload.wikimedia.org/wikipedia/commons/8/85/BrownUniversity-GraduateCenter.jpg",
