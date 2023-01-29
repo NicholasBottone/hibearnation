@@ -186,6 +186,10 @@
     padding-top: 1.2rem;
   }
 
+  .ascii {
+    display: none;
+  }
+
   .textSignIn {
     display: flex;
     margin-top: 0.5rem;

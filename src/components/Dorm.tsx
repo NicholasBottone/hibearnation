@@ -11,6 +11,7 @@ import { BiPlusMedical } from "react-icons/bi";
 import Modal from "./Modal";
 import Review from "./buttons/Review";
 import AddImage from "./buttons/AddImage";
+import { useSession, signIn } from "next-auth/react";
 
 interface DormProps {
   name: string;
@@ -27,6 +28,7 @@ export default function Dorm(props: DormProps) {
   const [buildingReviews, setBuildingReviews] = useState([]);
   const [showAddImageModal, setShowAddImageModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const { data: sessionData } = useSession();
 
   // Lightbox
   const [showLightbox, setShowLightbox] = useState(false);
@@ -114,6 +116,24 @@ export default function Dorm(props: DormProps) {
       comfortRating: 7,
       locationRating: 2,
     },
+    {
+      id: 5,
+      createdAt: "2021-01-01",
+      updatedAt: "2021-01-01",
+      title: "Great place to live",
+      body: "Terrible Place. .",
+      author: "James",
+      authorId: "2",
+      location: "Grad Center A",
+      locationId: "1",
+      media: [],
+      upvotes: [],
+      downvotes: [],
+      overallRating: 5,
+      amenitiesRating: 6,
+      comfortRating: 7,
+      locationRating: 2,
+    },
   ];
 
   return (
@@ -179,7 +199,7 @@ export default function Dorm(props: DormProps) {
               <h1 className={styles.sectionTitle}>Summary</h1>
               <div
                 onClick={() => {
-                  setShowAddImageModal(true);
+                  sessionData ? setShowAddImageModal(true) : void signIn();
                 }}
                 className={styles.addImage}
               >
@@ -229,7 +249,7 @@ export default function Dorm(props: DormProps) {
             <h1 className={styles.sectionTitle}>Reviews ({reviews.length})</h1>
             <div
               onClick={() => {
-                setShowReviewModal(true);
+                sessionData ? setShowReviewModal(true) : void signIn();
               }}
               className={styles.addReview}
             >
