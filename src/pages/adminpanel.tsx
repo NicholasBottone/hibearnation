@@ -12,7 +12,12 @@ const AdminPanel: NextPage = () => {
   const [locationAreaname, setLocationAreaname] = useState("");
   const [locationSummary, setLocationSummary] = useState("");
   const [locationSubs, setLocationSubs] = useState<string[]>([]);
-  const [locationFloorplans, setLocationFloorplans] = useState<string[]>([]);
+  const [locationFloorplanNames, setLocationFloorplanNames] = useState<
+    string[]
+  >([]);
+  const [locationFloorplanLinks, setLocationFloorplanLinks] = useState<
+    string[]
+  >([]);
   const location_reset = () => {
     setLocationName("");
     setLocationAddress("");
@@ -20,7 +25,8 @@ const AdminPanel: NextPage = () => {
     setLocationAreaname("");
     setLocationSummary("");
     setLocationSubs([]);
-    setLocationFloorplans([]);
+    setLocationFloorplanNames([]);
+    setLocationFloorplanLinks([]);
   };
 
   const [reviewBody, setReviewBody] = useState("");
@@ -66,11 +72,15 @@ const AdminPanel: NextPage = () => {
       locationAddress === "" ||
       locationCoordinates === "" ||
       locationAreaname === "" ||
-      locationSummary === "" ||
-      locationFloorplans.length === 0
+      locationSummary === ""
     ) {
       console.log("Location is missing nesecary fields. Not adding location.");
       alert("Location is missing nesecary fields. Not adding location.");
+      return;
+    }
+    if (locationFloorplanNames.length !== locationFloorplanLinks.length) {
+      console.log("Floorplan names and links are not the same length.");
+      alert("Floorplan names and links are not the same length.");
       return;
     }
     console.log(
@@ -82,8 +92,10 @@ const AdminPanel: NextPage = () => {
       locationAreaname,
       " | Sublocations: ",
       locationSubs,
-      " | Floorplans: ",
-      locationFloorplans
+      " | FloorplanNames: ",
+      locationFloorplanNames,
+      " | FloorplanLinks: ",
+      locationFloorplanLinks
     );
     createLocationMutation.mutate({
       name: locationName,
@@ -92,7 +104,12 @@ const AdminPanel: NextPage = () => {
       coordinates: locationCoordinates,
       areaName: locationAreaname,
       sublocations: locationSubs,
-      floorplans: locationFloorplans,
+      floorplans: locationFloorplanNames.map((name, index) => {
+        return {
+          name: name,
+          url: locationFloorplanLinks[index] || "",
+        };
+      }),
     });
   };
 
@@ -106,7 +123,6 @@ const AdminPanel: NextPage = () => {
     createReviewMutation.mutate({
       body: reviewBody,
       locationId: reviewLocationId,
-      media: reviewMedia,
       overallRating: reviewOverallRating,
       amenitiesRating: reviewAmenitiesRating,
       comfortRating: reviewComfortRating,
@@ -139,6 +155,7 @@ const AdminPanel: NextPage = () => {
             <img
               src={sessionData.user?.image || ""}
               style={{ width: 50, height: 50 }}
+              alt=""
             />
             <h3>Logged in as: {sessionData.user?.email}</h3>
           </div>
@@ -251,11 +268,37 @@ const AdminPanel: NextPage = () => {
               }
             }}
           />
-
-          <label htmlFor="Location Floorplans">Location Floorplans:</label>
+          <label htmlFor="Floorplan Names (Comma Separated)">
+            Floorplan Names:
+          </label>
           <textarea
-            id="Location Floorplans"
-            value={locationFloorplans}
+            id="Floorplan Names"
+            value={locationFloorplanNames}
+            onChange={(e) => {
+              const originalString = e.target.value;
+              //Separate the string by commas
+              const floorplanNames = originalString.split(",");
+              //Remove any empty strings
+              const filteredFloorplanNames = floorplanNames.filter(
+                (floorplanName) => floorplanName !== ""
+              );
+              //if there are no locations, set to empty array
+              if (!originalString) {
+                setLocationFloorplanNames([]);
+              }
+              //otherwise, set to the filtered array
+              else {
+                setLocationFloorplanNames(filteredFloorplanNames);
+              }
+            }}
+          />
+
+          <label htmlFor="Floorplan Links (Comma Separated)">
+            Floorplan Links:
+          </label>
+          <textarea
+            id="Floorplan Links"
+            value={locationFloorplanLinks}
             onChange={(e) => {
               const originalString = e.target.value;
               //Separate the string by commas
@@ -266,11 +309,11 @@ const AdminPanel: NextPage = () => {
               );
               //if there are no locations, set to empty array
               if (!originalString) {
-                setLocationFloorplans([]);
+                setLocationFloorplanLinks([]);
               }
               //otherwise, set to the filtered array
               else {
-                setLocationFloorplans(filteredFloorplans);
+                setLocationFloorplanLinks(filteredFloorplans);
               }
             }}
           />
