@@ -1,25 +1,21 @@
 import React from "react";
 import styles from "./Review.module.css";
+import { useState } from "react";
+import { CgCloseR } from "react-icons/cg";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ReactStars from "react-rating-stars-component";
-import { useState } from "react";
-import { CgCloseR } from "react-icons/cg";
 
 interface ReviewProps {
+  location: string;
   closeModal: () => void;
 }
 
 export default function Review(props: ReviewProps) {
-  const [overallRating, setOverallRating] = useState(0);
   const [amenitiesRating, setAmenitiesRating] = useState(0);
   const [locationRating, setLocationRating] = useState(0);
   const [comfortRating, setComfortRating] = useState(0);
   const [review, setReview] = useState("");
-
-  const overallRate = (newRating: number) => {
-    setOverallRating(newRating);
-  };
 
   const amenitiesRate = (newRating: number) => {
     setAmenitiesRating(newRating);
@@ -35,89 +31,73 @@ export default function Review(props: ReviewProps) {
 
   return (
     <div className={styles.Review}>
-      <div className={styles.TopRow} onClick={props.closeModal}>
-        <CgCloseR className={styles.Close} />
-      </div>
-      <h1
-        style={{ marginTop: 0, color: "black", marginBottom: 0 }}
-        className={styles.Overall}
-      >
-        Overall Score
+      <h1 className={styles.Title}>
+        {/* cut location to 18 characters and add ellipse */}
+        {props.location.length > 18
+          ? props.location.slice(0, 18) + "..."
+          : props.location}
       </h1>
-      <ReactStars
-        count={5}
-        size={44}
-        isHalf={true}
-        emptyIcon={<i className="far fa-star"></i>}
-        halfIcon={<i className="fa fa-star-half-alt"></i>}
-        fullIcon={<i className="fa fa-star"></i>}
-        onChange={overallRate}
-        activeColor="#ffd700"
-      />
-      <div className={styles.RatingRow}>
-        <div className={styles.RatingPair}>
-          <h2>Ammenities</h2>
+      <div className={styles.RatingContainer}>
+        <div className={styles.Rating}>
+          <h1>Amenities</h1>
           <ReactStars
             count={5}
-            size={35}
-            isHalf={true}
-            emptyIcon={<i className="far fa-star"></i>}
-            halfIcon={<i className="fa fa-star-half-alt"></i>}
-            fullIcon={<i className="fa fa-star"></i>}
             onChange={amenitiesRate}
-            activeColor="#ffd700"
-          />
-        </div>
-        <div className={styles.RatingPair}>
-          <h2>Location</h2>
-          <ReactStars
-            count={5}
             size={35}
             isHalf={true}
             emptyIcon={<i className="far fa-star"></i>}
             halfIcon={<i className="fa fa-star-half-alt"></i>}
             fullIcon={<i className="fa fa-star"></i>}
+            activeColor="#ebab34"
+            color="black"
+          />
+        </div>
+        <div className={styles.Rating}>
+          <h1>Location</h1>
+          <ReactStars
+            count={5}
             onChange={locationRate}
-            activeColor="#ffd700"
-          />
-        </div>
-        <div className={styles.RatingPair}>
-          <h2>Comfort</h2>
-          <ReactStars
-            count={5}
             size={35}
             isHalf={true}
             emptyIcon={<i className="far fa-star"></i>}
             halfIcon={<i className="fa fa-star-half-alt"></i>}
             fullIcon={<i className="fa fa-star"></i>}
-            onChange={comfortRate}
-            activeColor="#ffd700"
+            activeColor="#ebab34"
+            color="black"
           />
         </div>
+        <div className={styles.Rating}>
+          <h1>Comfort</h1>
+          <ReactStars
+            count={5}
+            onChange={comfortRate}
+            size={35}
+            isHalf={true}
+            emptyIcon={<i className="far fa-star"></i>}
+            halfIcon={<i className="fa fa-star-half-alt"></i>}
+            fullIcon={<i className="fa fa-star"></i>}
+            activeColor="#ebab34"
+            color="black"
+          />
+        </div>
+        {/* text area for review */}
       </div>
-      <div className={styles.Input}>
-        {/* input field */}
+      <div className={styles.ReviewContainer}>
         <textarea
-          placeholder="Write a review..."
-          className={styles.Textarea}
+          value={review}
+          className={styles.ReviewInput}
           onChange={(e) => setReview(e.target.value)}
+          placeholder="Write your review here..."
         />
       </div>
-      <button
-        className={styles.Button}
-        onClick={() => {
-          console.log(
-            overallRating,
-            amenitiesRating,
-            locationRating,
-            comfortRating,
-            review
-          );
-          props.closeModal();
-        }}
-      >
-        Submit
-      </button>
+      <div className={styles.ButtonContainer}>
+        <p className={styles.Button} onClick={props.closeModal}>
+          Cancel
+        </p>
+        <p className={styles.Button} onClick={props.closeModal}>
+          Submit
+        </p>
+      </div>
     </div>
   );
 }

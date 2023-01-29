@@ -38,10 +38,14 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <Modal show={showModal}>
-          <Review closeModal={() => setShowModal(false)} />
+          <Review
+            closeModal={() => setShowModal(false)}
+            location="Grad Center Hall A"
+          />
         </Modal>
         <p
           className={styles.title}
+          onClick={() => setShowModal(true)}
           style={{
             fontSize: "2rem",
             margin: 0,
@@ -75,12 +79,7 @@ const Home: NextPage = () => {
             curSearch={search}
           />
           <div className={styles.ascii}>
-            <pre
-              className={styles.BearAsciiArt}
-              onClick={() => setShowModal(true)}
-            >
-              {bearAsciiArt}
-            </pre>
+            <pre className={styles.BearAsciiArt}>{bearAsciiArt}</pre>
             <pre className={styles.HouseAsciiArt}>{houseAsciiArt}</pre>
             <pre className={styles.SciliAsciiArt}>{sciliAsciiArt}</pre>
             <pre className={styles.ShowerAsciiArt}>{showerAsciiArt}</pre>
