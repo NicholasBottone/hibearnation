@@ -132,6 +132,7 @@ export default function Dorm(props: DormProps) {
           closeModal={() => {
             setShowAddImageModal(false);
           }}
+          locationId={props.id}
         />
       </Modal>
       <Modal show={showReviewModal}>
