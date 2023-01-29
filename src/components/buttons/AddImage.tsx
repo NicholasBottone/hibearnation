@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import styles from "./AddImage.module.css";
 
 import { BiImageAdd } from "react-icons/bi";
+import { env } from "../../env/client.mjs";
+import { api } from "../../utils/api";
 
 interface AddImageProps {
   closeModal: () => void;
+  locationId: string;
 }
 
 export default function AddImage(props: AddImageProps) {
   const [uploading, setUploading] = useState(false);
+  const [imageURL, setImageURL] = useState<string>();
+  const postMediaMutation = api.reviews.postMedia.useMutation();
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -19,9 +24,7 @@ export default function AddImage(props: AddImageProps) {
     fetch("https://api.imgur.com/3/image", {
       method: "POST",
       headers: {
-        Authorization: `Client-ID ${
-          process.env.NEXT_PUBLIC_IMGUR_CLIENT_ID ?? ""
-        }`,
+        Authorization: `Client-ID ${env.NEXT_PUBLIC_IMGUR_CLIENT_ID}`,
       },
       body: formData,
     })
@@ -29,7 +32,7 @@ export default function AddImage(props: AddImageProps) {
         res
           .json()
           .then((data) => {
-            // props.setImageURL((data as { data: { link: string } }).data.link);
+            setImageURL((data as { data: { link: string } }).data.link);
             setUploading(false);
           })
           .catch((err) => {
@@ -50,23 +53,17 @@ export default function AddImage(props: AddImageProps) {
     );
   }
 
-  // if (props.imageURL) {
-  //   return (
-  //     <div
-  //       className={
-  //         props.type === "post"
-  //           ? styles.PostImageContainer
-  //           : styles.EventImageContainer
-  //       }
-  //     >
-  //       <img
-  //         className={styles.UploadedImage}
-  //         src={props.imageURL}
-  //         alt="Upload preview"
-  //       />
-  //     </div>
-  //   );
-  // }
+  if (imageURL) {
+    return (
+      <div className={styles.PostImageContainer}>
+        <img
+          className={styles.UploadedImage}
+          src={imageURL}
+          alt="Upload preview"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.AddImage}>
@@ -93,7 +90,16 @@ export default function AddImage(props: AddImageProps) {
         </p>
         <p
           className={styles.Button}
-          onClick={props.closeModal}
+          onClick={() => {
+            if (imageURL) {
+              console.log(imageURL);
+              postMediaMutation.mutate({
+                media: imageURL,
+                locationId: props.locationId,
+              });
+            }
+            props.closeModal();
+          }}
           style={{
             backgroundColor: "#60ae3c",
             color: "white",
