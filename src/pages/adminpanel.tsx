@@ -46,7 +46,7 @@ const AdminPanel: NextPage = () => {
   const createLocationMutation = api.admin.createLocation.useMutation();
   const createReviewMutation = api.reviews.createReview.useMutation();
 
-  const { data } = api.locatons.getAllAreas.useQuery();
+  const { data: allAreas } = api.locations.getAllAreas.useQuery();
 
   const { data: sessionData } = useSession();
 
@@ -215,13 +215,19 @@ const AdminPanel: NextPage = () => {
 
           {/* TODO Make this a dropdown */}
           <label htmlFor="Location Area Name">Location Area Name:</label>
-          <div className="area-name-dropdown">
-            <input
+          <div className="area-name-dropdown-div">
+            <select
               id="Location Area Name"
-              type="text"
-              value={locationAreaname}
-              onChange={(e) => setLocationAreaname(e.target.value)}
-            />
+              onChange={(e) => {
+                setLocationAreaname(e.target.value);
+              }}
+            >
+              {allAreas?.map((area) => (
+                <option value={area.name} key={area.id}>
+                  {area.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <label htmlFor="Location Sublocations (Empty or comma-separated list)">
@@ -229,7 +235,6 @@ const AdminPanel: NextPage = () => {
           </label>
           <textarea
             id="Location Sublocations"
-            type="text"
             value={locationSubs}
             onChange={(e) => {
               const originalString = e.target.value;
@@ -253,7 +258,6 @@ const AdminPanel: NextPage = () => {
           <label htmlFor="Location Floorplans">Location Floorplans:</label>
           <textarea
             id="Location Floorplans"
-            type="text"
             value={locationFloorplans}
             onChange={(e) => {
               const originalString = e.target.value;
@@ -277,7 +281,6 @@ const AdminPanel: NextPage = () => {
           <label htmlFor="Location Summary">Location Summary:</label>
           <textarea
             id="Location Summary"
-            type="text"
             value={locationSummary}
             onChange={(e) => setLocationSummary(e.target.value)}
           />
