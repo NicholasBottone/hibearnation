@@ -76,15 +76,20 @@
 
 .buildingContentContainer {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1, 1, 0;
+  height: fit-content;
+  padding-bottom: 20px;
 }
 
 .gridColOne {
   text-align: left;
-  display: grid;
-  grid-auto-rows: minmax(80px, auto);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 400px;
 }
 
 .itemOne {
@@ -119,6 +124,9 @@
   padding-left: 20px;
   text-align: center;
   overflow: hidden;
+  align-self: stretch;
+  flex: 1;
+  min-width: 400px;
 }
 
 .scrollable {
@@ -126,9 +134,15 @@
   background-color: white;
   border: 2px solid black;
   border-radius: 10px;
-  max-height: 37vh;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 900px) {
+  .scrollable {
+    max-height: 60vh;
+  }
 }
 
 .sectionTitle {
