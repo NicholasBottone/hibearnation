@@ -5,9 +5,11 @@ import styles from "./Building.module.css";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import BuildingReview from "./DormReview";
 
 interface BuildingProps {
   name: string;
+  areaName: string;
   summary: string;
   info: {
     laundryFloor: string;
@@ -34,6 +36,46 @@ export default function Building2(props: BuildingProps) {
     [lightboxEntry]
   );
   const numImages = props.images.length > 3 ? 3 : props.images.length;
+
+  // Reviews for the building
+  const reviews = [
+    {
+      id: 1,
+      createdAt: "2021-01-01",
+      updatedAt: "2021-01-01",
+      title: "Great place to live",
+      body: "I lived here for 2 years and it was great. The rooms are spacious and the bathrooms are clean. The laundry is on the 3rd floor and the machines are new. The location is great and the building is quiet. The only downside is that the building is a bit old and the elevators are slow.",
+      author: "Andrew",
+      authorId: "1",
+      location: "Grad Center A",
+      locationId: "1",
+      media: [],
+      upvotes: [],
+      downvotes: [],
+      overallRating: 8,
+      amenitiesRating: 8,
+      comfortRating: 8,
+      locationRating: 8,
+    },
+    {
+      id: 2,
+      createdAt: "2021-01-01",
+      updatedAt: "2021-01-01",
+      title: "Great place to live",
+      body: "Terrible Place. .",
+      author: "James",
+      authorId: "2",
+      location: "Grad Center A",
+      locationId: "1",
+      media: [],
+      upvotes: [],
+      downvotes: [],
+      overallRating: 5,
+      amenitiesRating: 6,
+      comfortRating: 7,
+      locationRating: 2,
+    },
+  ];
 
   return (
     <div className={styles.buildingContainer}>
@@ -87,13 +129,13 @@ export default function Building2(props: BuildingProps) {
           <div className={styles.itemTwo}>
             <div className={styles.sectionDivider} />
             <h1 className={styles.sectionTitle}>Info</h1>
-            Laundry Floor: {props.info.laundryFloor}
-            <br />
+            Sublocation: fill
+            {/* <br />
             Laundry Room: {props.info.laundryRoom}
             <br />
             Capacity: {props.info.capacity}
             <br />
-            Class Year: {props.info.classYear}
+            Class Year: {props.info.classYear} */}
           </div>
           <div className={styles.itemThree}>
             <div className={styles.sectionDivider} />
@@ -122,9 +164,7 @@ export default function Building2(props: BuildingProps) {
           </div>
         </div>
         <div className={styles.gridColTwo}>
-          <h1 className={styles.sectionTitle}>
-            Reviews ({buildingReviews.length})
-          </h1>
+          <h1 className={styles.sectionTitle}>Reviews ({reviews.length})</h1>
           {/* <WriteReplyModal
           isOpen={writeReplyModal}
           onClose={() => setWriteReplyModal(false)}
@@ -132,13 +172,15 @@ export default function Building2(props: BuildingProps) {
           <div className={styles.scrollable}>
             {
               // If there are no reviews, display an empty state
-              buildingReviews.length === 0 ? (
+              reviews.length === 0 ? (
                 <div className={styles.reviewContainerEmptyState}>
                   There are no reviews for this building yet. Leave the first
                   review!
                 </div>
               ) : (
-                buildingReviews
+                reviews.map((review) => (
+                  <BuildingReview {...review} key={review.id} />
+                ))
               )
             }
           </div>

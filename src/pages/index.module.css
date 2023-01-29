@@ -110,6 +110,10 @@
   margin-top: 1%;
 }
 
+.ascii {
+  user-select: none;
+}
+
 @media screen and (max-width: 768px) {
   .ascii {
     display: none;

@@ -85,8 +85,12 @@
 }
 
 .scrollable {
+  /* padding: 1rem; */
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
   max-height: 100vh;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .sectionTitle {
