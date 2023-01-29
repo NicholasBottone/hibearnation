@@ -165,6 +165,7 @@
   }
   .gridColTwo {
     padding-left: 0;
+    margin-top: 0;
   }
   .itemThree {
     grid-row: 3;
@@ -172,6 +173,12 @@
 
   .ReviewHeader {
     margin-bottom: 1rem;
+  }
+  .sectionDividerMobile {
+    width: 100%;
+    border-bottom: 1px solid #000000;
+    margin-bottom: 1rem;
+    margin-top: 0;
   }
 }
 

@@ -311,6 +311,7 @@ export default function Dorm(props: DormProps) {
           </div>
         </div>
         <div className={styles.gridColTwo}>
+          <div className={styles.sectionDividerMobile} />
           <div className={styles.ReviewHeader}>
             <h1 className={styles.sectionTitle}>
               Reviews ({props.reviews.length})
