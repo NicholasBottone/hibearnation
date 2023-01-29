@@ -57,7 +57,7 @@ export default function AddImage(props: AddImageProps) {
     return (
       <div className={styles.AddImage}>
         <div className={styles.ImageUploadContainer}>
-          <p className={styles.ImageUploaded}>Uploaded</p>
+          <p className={styles.ImageUploaded}>Uploaded! Click submit!</p>
         </div>
         <div className={styles.ButtonContainer}>
           <p

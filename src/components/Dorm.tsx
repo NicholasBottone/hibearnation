@@ -292,19 +292,14 @@ export default function Dorm(props: DormProps) {
                 ))}
             <br />
             Floorplan:{" "}
-            {/* {props.floorplans.length === 0
+            {props.floorplans.length === 0
               ? "N/A"
               : props.floorplans.map((floorplan, idx) => (
-                  <a
-                    className={styles.link}
-                    key={idx}
-                    href={floorplan.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a className={styles.listItem} key={idx} href={floorplan.url}>
                     {floorplan.name}{" "}
                   </a>
-                ))} */}
+                ))}
+            <br />
           </div>
           <div className={styles.itemThree}>
             <div className={styles.sectionDivider} />
