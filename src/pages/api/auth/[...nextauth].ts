@@ -15,9 +15,10 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-    // async signIn({ profile }) {
-    //   return profile?.email?.endsWith("@brown.edu");
-    // },
+    // Only allow users with a @brown.edu email address to sign in
+    signIn({ profile }) {
+      return !!profile?.email?.endsWith("@brown.edu");
+    },
   },
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
