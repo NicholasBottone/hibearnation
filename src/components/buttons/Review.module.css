@@ -97,7 +97,7 @@
   height: 10%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .Review {
     height: 95vh;
     width: 90vw;

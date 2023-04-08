@@ -98,7 +98,7 @@
   margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .AddImage {
     height: 95vh;
     width: 90vw;

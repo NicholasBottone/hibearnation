@@ -25,6 +25,7 @@ const Home: NextPage = () => {
   const [search, setSearch] = useState("");
   const { data } = api.locations.getNames.useQuery();
   const { data: sessionData } = useSession();
+
   return (
     <>
       <Head>
@@ -76,7 +77,6 @@ const Home: NextPage = () => {
           )}
         </div>
 
-        {/* ternary operator for if data is undefined */}
         {data ? (
           <div className={styles.container}>
             <ListOfDorms dorms={data} curSearch={search} />

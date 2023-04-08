@@ -19,7 +19,7 @@
   z-index: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .Searchbar {
     width: 92vw;
     margin-bottom: 0.7%;
