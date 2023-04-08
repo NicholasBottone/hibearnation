@@ -191,6 +191,7 @@
 
   .title {
     padding-top: 1.2rem;
+    margin-bottom: 0;
   }
 
   .ascii {
@@ -202,4 +203,36 @@
     margin-top: 0.5rem;
     text-decoration: underline;
   }
+}
+
+.footer {
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.textLink {
+  text-decoration: underline;
+  color: brown;
+}
+
+.promoButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #562929;
+  padding: 0.4rem 1.3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  border-radius: 9px;
+  text-align: left;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+}
+
+.promoText {
+  margin: 0;
+  text-align: center;
 }

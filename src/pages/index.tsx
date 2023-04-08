@@ -5,8 +5,6 @@ import { useState } from "react";
 import { api } from "../utils/api";
 import Searchbar from "../components/Searchbar";
 import ListOfDorms from "../components/ListOfDorms";
-import Modal from "../components/Modal";
-import Review from "../components/buttons/Review";
 import { signIn, useSession, signOut } from "next-auth/react";
 import {
   bearAsciiArt,
@@ -20,7 +18,6 @@ import {
   toiletAsciiArt,
   bedAsciiArt,
 } from "../components/ascii";
-import Image from "next/image";
 
 const Home: NextPage = () => {
   const [search, setSearch] = useState("");
@@ -48,6 +45,19 @@ const Home: NextPage = () => {
         >
           hi<b style={{ color: "#822b2e" }}>bear</b>nation
         </p>
+
+        <div>
+          <p className={styles.promoText}>
+            Spreadsheet last updated 7 APR 6:20pm
+          </p>
+          <a
+            className={styles.promoButton}
+            href="https://bit.ly/housinglottery23"
+          >
+            View Housing Lottery Spreadsheet
+          </a>
+        </div>
+
         <Searchbar search={search} setSearch={setSearch} />
         <div className={styles.ascii}>
           {sessionData ? (
@@ -76,6 +86,14 @@ const Home: NextPage = () => {
             <p>Loading...</p>
           </div>
         )}
+        <div className={styles.footer}>
+          <a
+            className={styles.textLink}
+            href="https://github.com/NicholasBottone/hibearnation"
+          >
+            GitHub
+          </a>
+        </div>
         <div className={styles.ascii}>
           <div className={styles.BearAsciiArt}>
             <pre>{bearAsciiArt}</pre>
