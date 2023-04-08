@@ -18,6 +18,8 @@ import {
   toiletAsciiArt,
   bedAsciiArt,
 } from "../components/ascii";
+import { BiClipboard, BiTimeFive } from "react-icons/bi";
+import { BsGithub } from "react-icons/bs";
 
 const Home: NextPage = () => {
   const [search, setSearch] = useState("");
@@ -48,12 +50,14 @@ const Home: NextPage = () => {
 
         <div>
           <p className={styles.promoText}>
+            <BiTimeFive style={{ marginRight: "0.2rem" }} />
             Spreadsheet last updated 7 APR 6:20pm
           </p>
           <a
             className={styles.promoButton}
             href="https://bit.ly/housinglottery23"
           >
+            <BiClipboard />
             View Housing Lottery Spreadsheet
           </a>
         </div>
@@ -91,6 +95,7 @@ const Home: NextPage = () => {
             className={styles.textLink}
             href="https://github.com/NicholasBottone/hibearnation"
           >
+            <BsGithub style={{ marginRight: "0.2rem" }} />
             GitHub
           </a>
         </div>
