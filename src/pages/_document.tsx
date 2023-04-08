@@ -19,6 +19,12 @@ function Document() {
       <body>
         <Main />
         <NextScript />
+        {/* Cloudflare Web Analytics */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "b3c6dfd68ac244ca8f3df0e722ac0b5b"}'
+        ></script>
       </body>
     </Html>
   );
