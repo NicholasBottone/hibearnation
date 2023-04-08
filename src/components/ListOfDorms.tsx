@@ -13,6 +13,9 @@ interface ListOfDormsProps {
 export default function ListOfDorms(props: ListOfDormsProps) {
   const router = useRouter();
   const getOS = () => {
+    if (typeof window === "undefined") {
+      return null;
+    }
     const userAgent = window.navigator.userAgent;
     const platform = window.navigator.platform;
     const macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"];
