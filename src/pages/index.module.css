@@ -206,13 +206,21 @@
 }
 
 .footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   margin: 0.5rem;
 }
 
 .textLink {
   text-decoration: underline;
-  color: brown;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .promoButton {
@@ -233,6 +241,8 @@
 }
 
 .promoText {
+  display: flex;
   margin: 0;
-  text-align: center;
+  align-items: center;
+  margin-bottom: 0.25rem;
 }

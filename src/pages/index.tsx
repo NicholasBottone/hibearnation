@@ -49,10 +49,6 @@ const Home: NextPage = () => {
         </p>
 
         <div>
-          <p className={styles.promoText}>
-            <BiTimeFive style={{ marginRight: "0.2rem" }} />
-            Spreadsheet last updated 7 APR 6:20pm
-          </p>
           <a
             className={styles.promoButton}
             href="https://bit.ly/housinglottery23"
@@ -91,6 +87,10 @@ const Home: NextPage = () => {
           </div>
         )}
         <div className={styles.footer}>
+          <p className={styles.promoText}>
+            <BiTimeFive style={{ marginRight: "0.2rem" }} />
+            Spreadsheet last updated 7 APR 6:20pm
+          </p>
           <a
             className={styles.textLink}
             href="https://github.com/NicholasBottone/hibearnation"
