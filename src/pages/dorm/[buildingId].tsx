@@ -23,13 +23,23 @@ const MyPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>hibearnation</title>
-        <meta
-          name="description"
-          content="A Brown University dorm review and information site."
-        />
-        <meta name="theme-color" content="#eac9c1" />
-        <link rel="icon" href="/icon.png" />
+        {building.data ? (
+          <>
+            <title>{building.data.name} | hibearnation</title>
+            <meta name="description" content={building.data.summary} />
+            <meta
+              name="rating"
+              content={String(
+                building.data.Review.reduce(
+                  (acc, review) => acc + review.overallRating,
+                  0
+                ) / building.data.Review.length
+              )}
+            />
+          </>
+        ) : (
+          <title>hibearnation</title>
+        )}
       </Head>
 
       {/* Loading screen if building is undefined */}

@@ -15,6 +15,8 @@ function Document() {
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <meta name="theme-color" content="#eac9c1" />
+        <link rel="icon" href="/icon.png" />
       </Head>
       <body>
         <Main />

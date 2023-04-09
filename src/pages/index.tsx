@@ -32,10 +32,8 @@ const Home: NextPage = () => {
         <title>hibearnation</title>
         <meta
           name="description"
-          content="A Brown University dorm review and information site."
+          content="An information hub for residence halls at Brown University featuring reviews, floor plans, housing lottery spreadsheets, and more."
         />
-        <meta name="theme-color" content="#eac9c1" />
-        <link rel="icon" href="/icon.png" />
       </Head>
 
       <main className={styles.main}>
