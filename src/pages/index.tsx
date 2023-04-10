@@ -1,5 +1,9 @@
 import styles from "../styles/index.module.css";
-import { type NextPage } from "next";
+import { createServerSideHelpers } from "@trpc/react-query/server";
+import type { GetStaticProps, NextPage } from "next";
+import superjson from "superjson";
+import { createInnerTRPCContext } from "../server/api/trpc";
+import { type AppRouter, appRouter } from "../server/api/root";
 import Head from "next/head";
 import { useState } from "react";
 import { api } from "../utils/api";
@@ -141,6 +145,22 @@ const Home: NextPage = () => {
       </main>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const ssg = createServerSideHelpers<AppRouter>({
+    router: appRouter,
+    ctx: createInnerTRPCContext({ session: null }),
+    transformer: superjson,
+  });
+
+  await ssg.locations.getNames.prefetch();
+
+  return {
+    props: {
+      trpcState: ssg.dehydrate(),
+    },
+  };
 };
 
 export default Home;
