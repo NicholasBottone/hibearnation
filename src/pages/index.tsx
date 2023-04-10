@@ -19,7 +19,10 @@ import {
   bedAsciiArt,
 } from "../components/ascii";
 import { BiClipboard, BiTimeFive } from "react-icons/bi";
-import { BsGithub } from "react-icons/bs";
+import { BsGithub, BsInfoCircleFill } from "react-icons/bs";
+import Link from "next/link";
+import { bold } from "../utils/text";
+import { title } from "../components/about";
 
 const Home: NextPage = () => {
   const [search, setSearch] = useState("");
@@ -37,15 +40,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <p
-          className={styles.title}
-          style={{
-            fontSize: "2rem",
-            margin: 0,
-          }}
-        >
-          hi<b style={{ color: "#822b2e" }}>bear</b>nation
-        </p>
+        <h1 className={styles.title}>{bold(title)}</h1>
 
         <div>
           <a
@@ -89,13 +84,19 @@ const Home: NextPage = () => {
             <BiTimeFive style={{ marginRight: "0.2rem" }} />
             Spreadsheet last updated 7 APR 6:20pm
           </p>
-          <a
-            className={styles.textLink}
-            href="https://github.com/NicholasBottone/hibearnation"
-          >
-            <BsGithub style={{ marginRight: "0.2rem" }} />
-            GitHub
-          </a>
+          <p className={styles.textLinks}>
+            <a
+              className={styles.textLink}
+              href="https://github.com/NicholasBottone/hibearnation"
+            >
+              <BsGithub style={{ marginRight: "0.2rem" }} />
+              GitHub
+            </a>
+            <Link className={styles.textLink} href="/about">
+              <BsInfoCircleFill style={{ marginRight: "0.2rem" }} />
+              About
+            </Link>
+          </p>
         </div>
         <div className={styles.ascii}>
           <div className={styles.BearAsciiArt}>
