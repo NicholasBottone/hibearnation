@@ -1,5 +1,6 @@
 import React from "react";
 import { type NextPage } from "next";
+import NextError from "next/error";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { api } from "../../utils/api";
@@ -47,7 +48,7 @@ const MyPage: NextPage = () => {
         building.isLoading ? (
           <DormSkeleton />
         ) : (
-          <h1>404: Building not found</h1>
+          <NextError statusCode={404} />
         )
       ) : (
         <Dorm
