@@ -47,10 +47,14 @@ export const api = createTRPCNext<AppRouter>({
 
       /**
        * The default query options used for all queries
-       * @see https://trpc.io/docs/query-options
+       * @see https://tanstack.com/query/v4/docs/reference/QueryClient
        **/
-      queryOptions: {
-        staleTime: 1000 * 60 * 5, // 5 minutes
+      queryClientConfig: {
+        defaultOptions: {
+          queries: {
+            staleTime: Infinity,
+          },
+        },
       },
     };
   },
