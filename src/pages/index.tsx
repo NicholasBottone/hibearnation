@@ -23,6 +23,7 @@ import { BsGithub, BsInfoCircleFill } from "react-icons/bs";
 import Link from "next/link";
 import { bold } from "../utils/text";
 import { title } from "../components/about";
+import ListOfDormsSkeleton from "../components/ListOfDormsSkeleton";
 
 const Home: NextPage = () => {
   const [search, setSearch] = useState("");
@@ -75,8 +76,8 @@ const Home: NextPage = () => {
             <ListOfDorms dorms={data} curSearch={search} />
           </div>
         ) : (
-          <div>
-            <p>Loading...</p>
+          <div className={styles.container}>
+            <ListOfDormsSkeleton />
           </div>
         )}
         <div className={styles.footer}>
