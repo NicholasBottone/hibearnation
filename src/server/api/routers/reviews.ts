@@ -1,17 +1,17 @@
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 export const reviewsRouter = createTRPCRouter({
   // Takes a location, and returns a list of all reviews for that location
-  getByLocation: publicProcedure
-    .input(z.object({ id: z.string() }))
-    .query(({ ctx, input }) => {
-      return ctx.prisma.review.findMany({
-        where: {
-          locationId: input.id,
-        },
-      });
-    }),
+  // getByLocation: publicProcedure
+  //   .input(z.object({ id: z.string() }))
+  //   .query(({ ctx, input }) => {
+  //     return ctx.prisma.review.findMany({
+  //       where: {
+  //         locationId: input.id,
+  //       },
+  //     });
+  //   }),
 
   // Creates a new review for a given location
   createReview: protectedProcedure

@@ -36,8 +36,16 @@ export const locationsRouter = createTRPCRouter({
               },
             },
             include: {
-              upvotes: true,
-              downvotes: true,
+              upvotes: {
+                select: {
+                  id: true,
+                },
+              },
+              downvotes: {
+                select: {
+                  id: true,
+                },
+              },
             },
           },
         },

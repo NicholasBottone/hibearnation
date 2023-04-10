@@ -12,7 +12,6 @@ import Modal from "./Modal";
 import Review from "./buttons/Review";
 import AddImage from "./buttons/AddImage";
 import { useSession, signIn } from "next-auth/react";
-import type { User } from "@prisma/client";
 import Link from "next/link";
 
 interface DormProps {
@@ -36,8 +35,8 @@ interface DormProps {
     body: string;
     authorId: string;
     locationId: string;
-    upvotes: User[];
-    downvotes: User[];
+    upvotes: { id: string }[];
+    downvotes: { id: string }[];
     overallRating: number;
     amenitiesRating: number;
     comfortRating: number;

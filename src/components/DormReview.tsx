@@ -3,7 +3,6 @@ import styles from "./DormReview.module.css";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
 import { useState } from "react";
-import type { User } from "@prisma/client";
 import { signIn, useSession } from "next-auth/react";
 import { api } from "../utils/api";
 
@@ -14,8 +13,8 @@ interface BuildingReviewProps {
   body: string;
   authorId: string;
   locationId: string;
-  upvotes: User[];
-  downvotes: User[];
+  upvotes: { id: string }[];
+  downvotes: { id: string }[];
   overallRating: number;
   amenitiesRating: number;
   comfortRating: number;
