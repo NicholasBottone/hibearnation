@@ -56,7 +56,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #562929;
+  background-color: #502424;
   padding: 0.4rem 1.3rem;
   font-size: 1.1rem;
   font-weight: 700;
@@ -69,6 +69,7 @@
 
 .addImage:hover {
   background-color: #860b0b;
+  cursor: pointer;
 }
 
 .buildingHeader {
@@ -207,7 +208,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #562929;
+  background-color: #502424;
   padding: 0.4rem 1.3rem;
   font-size: 1.1rem;
   font-weight: 700;

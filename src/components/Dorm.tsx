@@ -152,7 +152,7 @@ export default function Dorm(props: DormProps) {
       ) : (
         <div className={styles.buildingNone}>
           <div className={styles.noImages}>
-            <h1>No images available, be the first!</h1>
+            <h2>No images available, be the first!</h2>
           </div>
         </div>
       )}
@@ -190,7 +190,7 @@ export default function Dorm(props: DormProps) {
           <div className={styles.itemOne}>
             <div className={styles.summaryHeader}>
               <div className={styles.leftSide}>
-                <h1 className={styles.sectionTitle}>Summary</h1>
+                <h2 className={styles.sectionTitle}>Summary</h2>
                 {!isNaN(averageAmenitiesRating) && (
                   <div className={styles.summaryEmojis}>
                     <div
@@ -280,7 +280,7 @@ export default function Dorm(props: DormProps) {
           </div>
           <div className={styles.itemTwo}>
             <div className={styles.sectionDivider} />
-            <h1 className={styles.sectionTitle}>Info</h1>
+            <h2 className={styles.sectionTitle}>Info</h2>
             Area Name: {props.areaName}
             <br />
             Sublocation:{" "}
@@ -304,16 +304,16 @@ export default function Dorm(props: DormProps) {
           </div>
           <div className={styles.itemThree}>
             <div className={styles.sectionDivider} />
-            <h1 className={styles.sectionTitle}>Location</h1>
+            <h2 className={styles.sectionTitle}>Location</h2>
             {props.location}
           </div>
         </div>
         <div className={styles.gridColTwo}>
           <div className={styles.sectionDividerMobile} />
           <div className={styles.ReviewHeader}>
-            <h1 className={styles.sectionTitle}>
+            <h2 className={styles.sectionTitle}>
               Reviews ({props.reviews.length})
-            </h1>
+            </h2>
             <div
               onClick={() => {
                 sessionData ? setShowReviewModal(true) : void signIn();

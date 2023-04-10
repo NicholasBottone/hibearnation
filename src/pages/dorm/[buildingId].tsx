@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { api } from "../../utils/api";
 
 import Dorm from "../../components/Dorm";
+import DormSkeleton from "../../components/DormSkeleton";
 
 // export default function building() {
 const MyPage: NextPage = () => {
@@ -43,7 +44,11 @@ const MyPage: NextPage = () => {
 
       {/* Loading screen if building is undefined */}
       {!building.data ? (
-        <div>Loading...</div>
+        building.isLoading ? (
+          <DormSkeleton />
+        ) : (
+          <h1>404: Building not found</h1>
+        )
       ) : (
         <Dorm
           id={building.data.id}
