@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./DormReview.module.css";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
-import { useState, useEffect } from "react";
-import { User } from "@prisma/client";
+import { useState } from "react";
+import type { User } from "@prisma/client";
 import { signIn, useSession } from "next-auth/react";
 import { api } from "../utils/api";
 

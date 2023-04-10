@@ -12,11 +12,7 @@ import Modal from "./Modal";
 import Review from "./buttons/Review";
 import AddImage from "./buttons/AddImage";
 import { useSession, signIn } from "next-auth/react";
-import { api } from "../utils/api";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import ReactStars from "react-rating-stars-component";
-import { User } from "@prisma/client";
+import type { User } from "@prisma/client";
 import Link from "next/link";
 
 interface DormProps {
@@ -80,7 +76,7 @@ export default function Dorm(props: DormProps) {
       ...props.images.slice(lightboxEntry),
       ...props.images.slice(0, lightboxEntry),
     ],
-    [lightboxEntry]
+    [lightboxEntry, props.images]
   );
   const numImages = props.images.length > 3 ? 3 : props.images.length;
 

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { api } from "../../utils/api";
-import { env } from "../../env/client.mjs";
 
 import Dorm from "../../components/Dorm";
 
