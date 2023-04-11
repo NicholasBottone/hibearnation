@@ -5,7 +5,8 @@ import superjson from "superjson";
 import { createInnerTRPCContext } from "../server/api/trpc";
 import { type AppRouter, appRouter } from "../server/api/root";
 import Head from "next/head";
-import { useState } from "react";
+import Router from "next/router";
+import { useEffect, useState } from "react";
 import { api } from "../utils/api";
 import Searchbar from "../components/Searchbar";
 import ListOfDorms from "../components/ListOfDorms";
@@ -28,22 +29,54 @@ import Link from "next/link";
 import { bold } from "../utils/text";
 import { title } from "../components/about";
 import ListOfDormsSkeleton from "../components/ListOfDormsSkeleton";
+import DormSkeleton from "../components/DormSkeleton";
 
 const Home: NextPage = () => {
   const [search, setSearch] = useState("");
   const { data } = api.locations.getNames.useQuery();
   const { data: sessionData } = useSession();
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const handleStart = (url: string) =>
+      url !== Router.asPath && setIsLoading(true);
+    const handleComplete = (url: string) =>
+      url === Router.asPath && setIsLoading(false);
+
+    Router.events.on("routeChangeStart", handleStart);
+    Router.events.on("routeChangeComplete", handleComplete);
+    Router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      Router.events.off("routeChangeStart", handleStart);
+      Router.events.off("routeChangeComplete", handleComplete);
+      Router.events.off("routeChangeError", handleComplete);
+    };
+  }, []);
+
+  const MyHead = () => (
+    <Head>
+      <title>hibearnation</title>
+      <meta
+        name="description"
+        content="An information hub for residence halls at Brown University featuring reviews, floor plans, housing lottery spreadsheets, and more."
+      />
+    </Head>
+  );
+
+  if (isLoading) {
+    return (
+      <>
+        <MyHead />
+        <DormSkeleton />
+      </>
+    );
+  }
+
   return (
     <>
-      <Head>
-        <title>hibearnation</title>
-        <meta
-          name="description"
-          content="An information hub for residence halls at Brown University featuring reviews, floor plans, housing lottery spreadsheets, and more."
-        />
-      </Head>
-
+      <MyHead />
       <main className={styles.main}>
         <h1 className={styles.title}>{bold(title)}</h1>
 

@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React from "react";
 import styles from "./ListOfDorms.module.css";
 import Link from "next/link";
@@ -12,7 +11,6 @@ interface ListOfDormsProps {
 }
 
 export default function ListOfDorms(props: ListOfDormsProps) {
-  const router = useRouter();
   const getOS = () => {
     if (typeof window === "undefined") return "Linux";
     const userAgent = window.navigator.userAgent;
