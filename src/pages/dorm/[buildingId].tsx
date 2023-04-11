@@ -1,32 +1,33 @@
-import React from "react";
-import { type NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import NextError from "next/error";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { api } from "../../utils/api";
-
 import Dorm from "../../components/Dorm";
 import DormSkeleton from "../../components/DormSkeleton";
+import { createServerSideHelpers } from "@trpc/react-query/server";
+import { createInnerTRPCContext } from "../../server/api/trpc";
+import { type AppRouter, appRouter } from "../../server/api/root";
+import superjson from "superjson";
 
-// export default function building() {
-const MyPage: NextPage = () => {
-  const router = useRouter();
-  const buildingId = router.query.buildingId;
+interface BuildingPageProps {
+  buildingId: string;
+}
+
+const BuildingPage: NextPage<BuildingPageProps> = (props) => {
+  const buildingId = props.buildingId;
 
   // API call to get the building info by its ID
-  // Check if buildingId is a string
-  if (typeof buildingId !== "string") {
-    return <div>Invalid building ID</div>;
-  }
-  const building = api.locations.getOne.useQuery({ id: buildingId });
-  console.log(building);
+  const building = api.locations.getOne.useQuery(
+    { id: buildingId },
+    { staleTime: 60 * 1000 }
+  );
 
   return (
     <>
       <Head>
         {building.data ? (
           <>
-            <title>{building.data.name} | hibearnation</title>
+            <title>{`${building.data.name} | hibearnation`}</title>
             <meta name="description" content={building.data.summary} />
             <meta
               name="rating"
@@ -68,4 +69,49 @@ const MyPage: NextPage = () => {
   );
 };
 
-export default MyPage;
+export const getStaticProps: GetStaticProps<BuildingPageProps> = async (
+  context
+) => {
+  if (typeof context.params?.buildingId !== "string") {
+    return {
+      notFound: true,
+    };
+  }
+
+  const ssg = createServerSideHelpers<AppRouter>({
+    router: appRouter,
+    ctx: createInnerTRPCContext({ session: null }),
+    transformer: superjson,
+  });
+
+  await ssg.locations.getOne.prefetch({ id: context.params.buildingId });
+
+  return {
+    props: {
+      trpcState: ssg.dehydrate(),
+      buildingId: context.params.buildingId,
+    },
+    revalidate: 60 * 60, // 1 hour
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const ssg = createServerSideHelpers<AppRouter>({
+    router: appRouter,
+    ctx: createInnerTRPCContext({ session: null }),
+    transformer: superjson,
+  });
+
+  const buildings = await ssg.locations.getNames.fetch();
+
+  return {
+    paths: buildings.map((building) => ({
+      params: {
+        buildingId: building.id,
+      },
+    })),
+    fallback: false,
+  };
+};
+
+export default BuildingPage;
