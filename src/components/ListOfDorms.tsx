@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import styles from "./ListOfDorms.module.css";
+import Link from "next/link";
 
 interface ListOfDormsProps {
   dorms: {
@@ -56,15 +57,13 @@ export default function ListOfDorms(props: ListOfDormsProps) {
       {sortedDorms.map(
         (dorm) =>
           dorm.name.toLowerCase().includes(props.curSearch.toLowerCase()) && (
-            <div
-              className={styles.Dorm}
+            <Link
+              href={"/dorm/" + dorm.id}
               key={dorm.id}
-              onClick={() => {
-                void router.push("/dorm/" + dorm.id);
-              }}
+              className={styles.Dorm}
             >
               {dorm.name}
-            </div>
+            </Link>
           )
       )}
       {sortedDorms.every(
