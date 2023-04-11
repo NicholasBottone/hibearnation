@@ -19,7 +19,7 @@ const BuildingPage: NextPage<BuildingPageProps> = (props) => {
   // API call to get the building info by its ID
   const building = api.locations.getOne.useQuery(
     { id: buildingId },
-    { staleTime: 60 * 1000 }
+    { refetchOnMount: "always" }
   );
 
   return (
