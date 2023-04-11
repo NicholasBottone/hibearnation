@@ -5,9 +5,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 export default function ListOfDorms() {
   const getOS = () => {
-    if (typeof window === "undefined") {
-      return null;
-    }
+    if (typeof window === "undefined") return "Linux";
     const userAgent = window.navigator.userAgent;
     const platform = window.navigator.platform;
     const macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"];

@@ -80,6 +80,7 @@ export default function Dorm(props: DormProps) {
   const numImages = props.images.length > 3 ? 3 : props.images.length;
 
   const getOS = () => {
+    if (typeof window === "undefined") return "Linux";
     const userAgent = window.navigator.userAgent;
     const platform = window.navigator.platform;
     const macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"];
