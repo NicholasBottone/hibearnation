@@ -83,7 +83,7 @@ const Home: NextPage = () => {
         <div className={styles.footer}>
           <p className={styles.promoText}>
             <BiTimeFive style={{ marginRight: "0.2rem" }} />
-            Spreadsheet last updated April 11 at 11:50am
+            Spreadsheet updated regularly!
           </p>
           <p className={styles.textLinks}>
             <a
