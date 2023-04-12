@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
 import React from "react";
 import styles from "./ListOfDorms.module.css";
+import Link from "next/link";
 
 interface ListOfDormsProps {
   dorms: {
@@ -11,11 +11,8 @@ interface ListOfDormsProps {
 }
 
 export default function ListOfDorms(props: ListOfDormsProps) {
-  const router = useRouter();
   const getOS = () => {
-    if (typeof window === "undefined") {
-      return null;
-    }
+    if (typeof window === "undefined") return "Linux";
     const userAgent = window.navigator.userAgent;
     const platform = window.navigator.platform;
     const macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"];
@@ -58,15 +55,13 @@ export default function ListOfDorms(props: ListOfDormsProps) {
       {sortedDorms.map(
         (dorm) =>
           dorm.name.toLowerCase().includes(props.curSearch.toLowerCase()) && (
-            <div
-              className={styles.Dorm}
+            <Link
+              href={"/dorm/" + dorm.id}
               key={dorm.id}
-              onClick={() => {
-                void router.push("/dorm/" + dorm.id);
-              }}
+              className={styles.Dorm}
             >
               {dorm.name}
-            </div>
+            </Link>
           )
       )}
       {sortedDorms.every(
