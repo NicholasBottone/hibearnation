@@ -80,15 +80,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>{bold(title)}</h1>
 
-        <div>
-          <a
-            className={styles.promoButton}
-            href="https://bit.ly/housinglottery23"
-          >
-            <BiClipboard />
-            View Housing Lottery Spreadsheet
-          </a>
-        </div>
+        {/* <PromoButton /> */}
 
         <Searchbar search={search} setSearch={setSearch} />
         <div className={styles.ascii}>
@@ -118,10 +110,10 @@ const Home: NextPage = () => {
           </div>
         )}
         <div className={styles.footer}>
-          <p className={styles.promoText}>
+          {/* <p className={styles.promoText}>
             <BiTimeFive style={{ marginRight: "0.2rem" }} />
             Spreadsheet updated regularly!
-          </p>
+          </p> */}
           <p className={styles.textLinks}>
             <a
               className={styles.textLink}
@@ -134,6 +126,13 @@ const Home: NextPage = () => {
               <BsInfoCircleFill style={{ marginRight: "0.2rem" }} />
               About
             </Link>
+            <a
+              className={styles.textLink}
+              href="https://bit.ly/housinglottery23"
+            >
+              <BiClipboard style={{ marginRight: "0.2rem" }} />
+              Spreadsheet
+            </a>
           </p>
         </div>
         <div className={styles.ascii}>
@@ -179,6 +178,13 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+const PromoButton = () => (
+  <a className={styles.textLink} href="https://bit.ly/housinglottery23">
+    <BiClipboard style={{ marginRight: "0.2rem" }} />
+    Spreadsheet
+  </a>
+);
 
 export const getStaticProps: GetStaticProps = async () => {
   const ssg = createServerSideHelpers<AppRouter>({
