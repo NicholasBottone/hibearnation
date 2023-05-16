@@ -71,7 +71,6 @@ export const toiletAsciiArt = `
   `;
 
 export const lightbulbAsciiArt = `
-  :
   '.  _  .'
  -=  (~)  =-   
   .'  #  '.

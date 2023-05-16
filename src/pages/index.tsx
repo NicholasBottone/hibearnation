@@ -23,7 +23,8 @@ import {
   toiletAsciiArt,
   bedAsciiArt,
 } from "../components/ascii";
-import { BiClipboard, BiTimeFive } from "react-icons/bi";
+import { BiClipboard } from "react-icons/bi";
+import { IoClose } from "react-icons/io5";
 import { BsGithub, BsInfoCircleFill } from "react-icons/bs";
 import Link from "next/link";
 import { bold } from "../utils/text";
@@ -37,6 +38,8 @@ const Home: NextPage = () => {
   const { data: sessionData } = useSession();
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [banner, setBanner] = useState(true);
 
   useEffect(() => {
     const handleStart = (url: string) =>
@@ -174,6 +177,17 @@ const Home: NextPage = () => {
             <div onClick={() => void signIn()}>Sign In</div>
           )}
         </div>
+        {banner && (
+          <div className={styles.AdvBanner}>
+            <div className={styles.AdvBannerClose}>
+              <IoClose onClick={() => setBanner(false)} />
+            </div>
+            <p className={styles.AdvBannerText}>
+              Win gift cards by reviewing dorms! 1 review or image is 1 entry.
+              Raffle ends 6/1/23.
+            </p>
+          </div>
+        )}
       </main>
     </>
   );
