@@ -266,3 +266,41 @@
   align-items: center;
   margin-bottom: 0.25rem;
 }
+
+.AdvBanner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 5vh;
+  background-color: #a43838;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.AdvBannerClose {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 820px) {
+  .AdvBanner {
+    height: 10vh;
+  }
+
+  .AdvBannerText {
+    font-size: 0.8rem;
+    width: 80%;
+    position: absolute;
+    right: 0;
+    margin-right: 1.5rem;
+  }
+}
