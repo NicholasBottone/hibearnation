@@ -23,7 +23,7 @@ import {
   toiletAsciiArt,
   bedAsciiArt,
 } from "../components/ascii";
-import { BiClipboard, BiTimeFive } from "react-icons/bi";
+import { BiClipboard } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import { BsGithub, BsInfoCircleFill } from "react-icons/bs";
 import Link from "next/link";
@@ -183,7 +183,7 @@ const Home: NextPage = () => {
               <IoClose onClick={() => setBanner(false)} />
             </div>
             <p className={styles.AdvBannerText}>
-              Win giftcards by reviewing dorms! 1 review or image is 1 entry.
+              Win gift cards by reviewing dorms! 1 review or image is 1 entry.
               Raffle ends 6/1/23.
             </p>
           </div>
