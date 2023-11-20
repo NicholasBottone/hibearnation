@@ -39,8 +39,6 @@ const Home: NextPage = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [banner, setBanner] = useState(true);
-
   useEffect(() => {
     const handleStart = (url: string) =>
       url !== Router.asPath && setIsLoading(true);
@@ -177,17 +175,6 @@ const Home: NextPage = () => {
             <div onClick={() => void signIn()}>Sign In</div>
           )}
         </div>
-        {banner && (
-          <div className={styles.AdvBanner}>
-            <div className={styles.AdvBannerClose}>
-              <IoClose onClick={() => setBanner(false)} />
-            </div>
-            <p className={styles.AdvBannerText}>
-              Win gift cards by reviewing dorms! 1 review or image is 1 entry.
-              Raffle ends 6/1/23.
-            </p>
-          </div>
-        )}
       </main>
     </>
   );
