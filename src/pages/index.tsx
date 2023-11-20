@@ -24,7 +24,6 @@ import {
   bedAsciiArt,
 } from "../components/ascii";
 import { BiClipboard } from "react-icons/bi";
-import { IoClose } from "react-icons/io5";
 import { BsGithub, BsInfoCircleFill } from "react-icons/bs";
 import Link from "next/link";
 import { bold } from "../utils/text";
