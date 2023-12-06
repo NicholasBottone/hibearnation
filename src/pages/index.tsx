@@ -80,7 +80,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>{bold(title)}</h1>
 
-        {/* <PromoButton /> */}
+        <PromoButton />
 
         <Searchbar search={search} setSearch={setSearch} />
         <div className={styles.ascii}>
@@ -128,7 +128,7 @@ const Home: NextPage = () => {
             </Link>
             <a
               className={styles.textLink}
-              href="https://bit.ly/housinglottery23"
+              href="https://bit.ly/reslifelottery24"
             >
               <BiClipboard style={{ marginRight: "0.2rem" }} />
               Spreadsheet
@@ -182,7 +182,7 @@ const Home: NextPage = () => {
 const PromoButton = () => (
   <a className={styles.textLink} href="https://bit.ly/reslifelottery24">
     <BiClipboard style={{ marginRight: "0.2rem" }} />
-    Spreadsheet
+    Housing Lottery Spreadsheet
   </a>
 );
 
