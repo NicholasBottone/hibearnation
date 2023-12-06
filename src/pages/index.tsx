@@ -180,7 +180,7 @@ const Home: NextPage = () => {
 };
 
 const PromoButton = () => (
-  <a className={styles.textLink} href="https://bit.ly/housinglottery23">
+  <a className={styles.textLink} href="https://bit.ly/reslifelottery24">
     <BiClipboard style={{ marginRight: "0.2rem" }} />
     Spreadsheet
   </a>
