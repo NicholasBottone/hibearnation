@@ -82,7 +82,7 @@ const Home: NextPage = () => {
 
         <PromoButton />
 
-        {/* <Searchbar search={search} setSearch={setSearch} />
+        <Searchbar search={search} setSearch={setSearch} />
         <div className={styles.ascii}>
           {sessionData ? (
             <>
@@ -108,7 +108,7 @@ const Home: NextPage = () => {
           <div className={styles.container}>
             <ListOfDormsSkeleton />
           </div>
-        )} */}
+        )}
         <div className={styles.footer}>
           {/* <p className={styles.promoText}>
             <BiTimeFive style={{ marginRight: "0.2rem" }} />
@@ -167,13 +167,13 @@ const Home: NextPage = () => {
             <pre>{skateboardAsciiArt}</pre>
           </div>
         </div>
-        {/* <div className={styles.textSignIn}>
+        <div className={styles.textSignIn}>
           {sessionData ? (
             <div onClick={() => void signOut()}>Sign Out</div>
           ) : (
             <div onClick={() => void signIn()}>Sign In</div>
           )}
-        </div> */}
+        </div>
       </main>
     </>
   );
@@ -184,10 +184,10 @@ const PromoButton = () => (
     className={styles.textLink}
     href="https://bit.ly/reslifelottery24"
     style={{
-      margin: "2rem 0",
+      margin: "0.2rem 0",
       padding: "0.5rem 1rem",
       borderRadius: "0.5rem",
-      backgroundColor: "#f0f0f0",
+      backgroundColor: "#ffffff",
     }}
   >
     <BiClipboard style={{ marginRight: "0.2rem" }} />
