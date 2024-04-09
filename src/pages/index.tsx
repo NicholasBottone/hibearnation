@@ -188,6 +188,7 @@ const PromoButton = () => (
       padding: "0.5rem 1rem",
       borderRadius: "0.5rem",
       backgroundColor: "#ffffff",
+      border: "2px solid #000000",
     }}
   >
     <BiClipboard style={{ marginRight: "0.2rem" }} />
